@@ -5,13 +5,22 @@ init()
 import os
 import sys
 from subprocess import call
+import platform
 
 def flush_input():
-    import msvcrt
-    while msvcrt.kbhit():
-        msvcrt.getch()
+    try:
+        import msvcrt
+        while msvcrt.kbhit():
+            msvcrt.getch()
+    except ImportError:
+        import sys, termios    #for linux/unix
+        termios.tcflush(sys.stdin, termios.TCIOFLUSH)
 
-clear = lambda: os.system('cls')
+oS = platform.system()
+if oS == 'Windows':
+	clear = lambda: os.system('cls')
+else:
+	clear = lambda: os.system('clear')
 clear()
 
 def beta():
