@@ -6,13 +6,22 @@ import os
 import sys
 from subprocess import call
 from inputimeout import inputimeout, TimeoutOccurred
+import platform
 
 def flush_input():
-    import msvcrt
-    while msvcrt.kbhit():
-        msvcrt.getch()
+    try:
+        import msvcrt
+        while msvcrt.kbhit():
+            msvcrt.getch()
+    except ImportError:
+        import sys, termios    #for linux/unix
+        termios.tcflush(sys.stdin, termios.TCIOFLUSH)
     
-clear = lambda: os.system('cls')
+oS = platform.system()
+if oS == 'Windows':
+	clear = lambda: os.system('cls')
+else:
+	clear = lambda: os.system('clear')
 
 inputM = open('inputM.txt', 'r')
 inputM = inputM.read()
@@ -26,7 +35,8 @@ go = input(Fore.GREEN + '\nPress enter to continue: ')
 clear()
 
 while True:
-    print(Fore.GREEN + 'Easy levels:'    1) Wild animals
+    print(Fore.GREEN + '''Easy levels:
+    1) Wild animals
     2) Electronics''')
     time.sleep(0.1)
     print(Fore.YELLOW + '''

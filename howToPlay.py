@@ -5,8 +5,13 @@ init()
 import os
 import sys
 from subprocess import call
+import platform
 
-clear = lambda: os.system('cls')
+oS = platform.system()
+if oS == 'Windows':
+	clear = lambda: os.system('cls')
+else:
+	clear = lambda: os.system('clear')
 clear()
 time.sleep(0.1)
 

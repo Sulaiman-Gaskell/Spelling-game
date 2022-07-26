@@ -9,9 +9,13 @@ from inputimeout import inputimeout, TimeoutOccurred
 import platform
 
 def flush_input():
-    import msvcrt
-    while msvcrt.kbhit():
-        msvcrt.getch()
+    try:
+        import msvcrt
+        while msvcrt.kbhit():
+            msvcrt.getch()
+    except ImportError:
+        import sys, termios    #for linux/unix
+        termios.tcflush(sys.stdin, termios.TCIOFLUSH)
 
 
 inputM = open('inputM.txt', 'r')
@@ -51,11 +55,10 @@ incorrect = 0
 
 oS = platform.system()
 if oS == 'Windows':
-	clearConsole = lambda: os.system('cls')
+	clear = lambda: os.system('cls')
 else:
-	clearConsole = lambda: os.system('clear')
+	clear = lambda: os.system('clear')
 
-clear = lambda: os.system('cls')
 again = 'w'
 clear()
 
@@ -135,7 +138,7 @@ You then have to spell that word.''')
                 flush_input()
                 print(Fore.YELLOW + '')
                 option = int(input('Enter the number of what you would like to do: '))
-                if option > 2 or option < 1:
+                if option > 3 or option < 1:
                     option = int('f')
                 break
             except ValueError:
