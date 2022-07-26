@@ -6,6 +6,7 @@ import os
 import sys
 from subprocess import call
 from inputimeout import inputimeout, TimeoutOccurred
+import platform
 
 def flush_input():
     import msvcrt
@@ -48,13 +49,19 @@ anyW = 0
 correct = 0
 incorrect = 0
 
+oS = platform.system()
+if oS == 'Windows':
+	clearConsole = lambda: os.system('cls')
+else:
+	clearConsole = lambda: os.system('clear')
+
 clear = lambda: os.system('cls')
 again = 'w'
 clear()
 
 def banner():
     print(Fore.YELLOW + '''*********************************
-1.9.1: You have gained +2 lists!
+1.9.2: You have gained +2 lists!
 *********************************
 ''')
 

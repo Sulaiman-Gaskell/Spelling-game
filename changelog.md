@@ -1,12 +1,14 @@
 ************
  Changelog
 ************
-
-1.9.2:
+ 
+1.9.2 (rev2):
 	Added placeholder for Play levels
 	Bug fixes:
 		(Major Fix) - Mulitple programs clashed causing game to run when it is not meant to.
 		Some text was incorrectly displayed.
+	Other changes:
+		Game is now availiable on linux devices
 
 1.9.1:
 	NEW: Two extra lists have been added
