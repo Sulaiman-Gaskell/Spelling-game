@@ -113,7 +113,7 @@ You then have to spell that word.''')
     elif option == 5:
         clear()
         call(['python', 'Spelling_Game.py'])
-        sys.exit()
+        exit()
     elif option == 1:
         clear()
         print(Fore.CYAN + '''1) Play using presets*
@@ -128,11 +128,12 @@ You then have to spell that word.''')
                 flush_input()
                 print(Fore.YELLOW + '')
                 option = int(input('Enter the number of what you would like to do: '))
-                if option > 3 or option < 1:
+                if option > 2 or option < 1:
                     option = int('f')
                 break
             except ValueError:
-                print(Fore.RED + 'Invalid try again' )
+                print(Fore.RED + 'Oops this is not avalable yet' )
+                print()
 
         if option == 2:
             call(['python', 'pWords.py'])
