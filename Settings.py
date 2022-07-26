@@ -62,10 +62,10 @@ while True:
             elif setting == 6:
                 clear()
                 call(['python', 'Spelling_Game.py'])
-                sys.exit()
+                exit()
             else:
                 setting = int('f')
-        except:
+        except ValueError:
             print(Fore.RED + '''Oops this is not available yet''')
             setting = 0
          

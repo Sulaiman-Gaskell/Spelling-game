@@ -2,6 +2,12 @@
  Changelog
 ************
 
+1.9.2:
+	Added placeholder for Play levels
+	Bug fixes:
+		(Major Fix) - Mulitple programs clashed causing game to run when it is not meant to.
+		Some text was incorrectly displayed.
+
 1.9.1:
 	NEW: Two extra lists have been added
 	NEW: You can now change your difficulty while playing with your own list.
