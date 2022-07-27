@@ -2,6 +2,16 @@
  Changelog
 ************
  
+2.0.0:
+	NEW: levels, you can now play levels of varying difficulty to challenge yourself! (More details in howToPlay)
+		 (Only 2 easy levels are currently available, more will be in mulitple revs of 2.0.0)
+	NEW: You can now view this changelog in-game
+	Visual changes:
+		Reworked welcome menu
+		Added placeholder for user data
+	Other changes:
+		Resetting user data includes level completion
+
 1.9.2 (rev2):
 	Added placeholder for Play levels
 	Bug fixes:
