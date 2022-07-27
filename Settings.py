@@ -185,6 +185,9 @@ Setting updated''')
             wipe = open('bTotal.txt', 'w')
             wipe.write('-9999999999999999999')
             wipe.close()
+            wipe = open('completion.txt', 'w')
+            wipe.write('0\n0\n0\n0\n0\n0') ########################
+            wipe.close()
             print(Fore.GREEN + 'Successfully wiped all user data!')
 
     elif setting == 5:

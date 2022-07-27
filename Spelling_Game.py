@@ -64,7 +64,7 @@ clear()
 
 def banner():
     print(Fore.YELLOW + '''*********************************
-1.9.2: You have gained +2 lists!
+2.0.0: New gamemode!
 *********************************
 ''')
 
@@ -91,7 +91,7 @@ You then have to spell that word.''')
     print('\n')
     print(Fore.CYAN + '''1) Play*
 2) Go to settings
-3) How to play
+3) View game related information
 4) Exit game
 ''')
     print('*', Fore.RED + '= paused session\'s points are retained if you choose this option')
@@ -114,8 +114,39 @@ You then have to spell that word.''')
         sys.exit()
 
     elif option == 3:
-        call(['python','howToPlay.py'])
-        sys.exit()
+        clear()
+        print(Fore.CYAN + '''1) View user info (coming soon)
+2) View game changelog
+3) View howToPlay
+''')
+        while True:
+            try:
+                time.sleep(0.1)
+                flush_input()
+                print(Fore.YELLOW + '')
+                option = int(input('Enter the number of what you would like to do: '))
+                if option > 3 or option < 2:
+                    option = int('f')
+                break
+            except ValueError:
+                print(Fore.RED + 'Oops this is not avalable yet' )
+                print()
+                
+     ###if option == 1:
+        if option == 2:
+            changelog = open('changelog.md').read()
+            clear()
+            print(Fore.WHITE + changelog)
+            print(Fore.MAGENTA + '\n(Most recent update is at the top)')
+            go = input(Fore.GREEN + '\nPress enter to continue: ')
+            clear()
+            call(['python', 'Spelling_Game.py'])
+            exit()
+
+        elif option == 3:
+            call(['python','howToPlay.py'])
+            sys.exit()   
+
     elif option == 4:
         clear()
         print(Fore.GREEN + 'Closing...')

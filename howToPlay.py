@@ -48,8 +48,13 @@ STATS: at the end of every session, the current, previous and best session's sta
 Use this to improve and see your spelling ability.''')
 go = input(Fore.GREEN + '►')
 print(Fore.LIGHTCYAN_EX + '''-----------------------------------------------------------------------------------------------------------------------
-NEW: you can now create and manage your own set of words. 
+You can create and manage your own set of words. 
 Play your own set of words to improve your spelling on a certain set of words!''')
+go = input(Fore.GREEN + '►')
+print(Fore.LIGHTGREEN_EX + '''-----------------------------------------------------------------------------------------------------------------------
+Play levels to try and beat (spell all words correctly) sets of words which vary in difficulty.
+Getting even one question wrong results in you having to starts over again!
+(User data here can also be wiped in settings alongs with preset stats)''')
 
 print()
 go = input(Fore.GREEN + 'Press enter to continue: ')
