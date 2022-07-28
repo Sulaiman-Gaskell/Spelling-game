@@ -64,7 +64,7 @@ clear()
 
 def banner():
     print(Fore.YELLOW + '''*********************************
-2.0.0: New gamemode!
+2.1.0: New gamemode!
 *********************************
 ''')
 
