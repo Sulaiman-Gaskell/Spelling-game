@@ -2,8 +2,8 @@
  Changelog
 ************
  
-2.1.0:
-	NEW: Medium levels have been added
+2.0.1:
+	NEW: Medium levels have been added (One has been replaced: Natural disasters --> Food)
 	Bug fixes:
 		Fixed multiple issues when timing out:
 			Spelling error
