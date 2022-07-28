@@ -36,22 +36,24 @@ print(Fore.RED + 'Please note that all settings (excluding input method) do not 
 
 while True:
     print(Fore.GREEN + '''Easy levels:
-¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
     print('1) Wild animals' , Fore.GREEN + ' -completed!' if wordsC[0] == '1' else Fore.RED + ' -incomplete') 
     print(Fore.GREEN + '2) Electronics' , Fore.GREEN + '  -completed!' if wordsC[1] == '1' else Fore.RED + '  -incomplete')
     time.sleep(0.1)
     print(Fore.YELLOW + '''\n
 Medium levels:
-¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
-    print('3) Oceanic creatures' , Fore.GREEN + ' -complete!' if wordsC[2] == '1' else Fore.RED + ' -incomplete')
-    print(Fore.YELLOW + '4) Natural disasters' , Fore.GREEN + ' -completed!' if wordsC[3] == '1' else Fore.RED + ' -incomplete')
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
+    print('3) Oceanic creatures*' , Fore.GREEN + ' -completed!' if wordsC[2] == '1' else Fore.RED + ' -incomplete')
+    print(Fore.YELLOW + '4) Food*' , Fore.GREEN + '              -completed!' if wordsC[3] == '1' else\
+         Fore.RED + '              -incomplete')
     time.sleep(0.1)
     print(Fore.RED + '''\n
 Hard levels:
-¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
     print('5) Geology' , Fore.GREEN + '        -completed!' if wordsC[4] == '1' else Fore.RED + '        -incomplete')
     print(Fore.RED + '6) The Atmosphere' , Fore.GREEN + ' -completed!' if wordsC[5] == '1' else Fore.RED + ' -incomplete')
 
+    print(Fore.CYAN + '\n* = Each question may contain more than one word')
     time.sleep(0.1)
 
     print(Fore.BLUE + '''
@@ -63,7 +65,7 @@ Enter 'l' to leave''')
                 call(['python', 'Spelling_Game.py'])
                 exit()
             wLevel = int(wLevel)
-            if wLevel > 2 or wLevel < 1:
+            if wLevel > 4 or wLevel < 1:
                 wLevel = int('f')
             break
         except ValueError:
@@ -77,7 +79,7 @@ Enter 'l' to leave''')
     time.sleep(0.3)
     clear()
     word = 0
-    if wLevel == 1:
+    if wLevel == 1: ## Wild animals
         words = '''monkey Panda Shark Zebra Gorilla Walrus Leopard Wolf eagle
 Jellyfish Crab Giraffe Camel Starfish Koala Alligator Owl Tiger Bear whale'''.split()
         bTLength = 0.8
@@ -85,13 +87,35 @@ Jellyfish Crab Giraffe Camel Starfish Koala Alligator Owl Tiger Bear whale'''.sp
         indexR = 0
         tWords = '20'
 
-    elif wLevel == 2:
+    elif wLevel == 2: ## Electronics
         words = '''clock charger counter Blender speaker Bulb fan dryer Computer
 Copier camera Drill Earphones Fan Fax lamp Headset iPod Juicer Monitor'''.split()
         bTLength = 0.8
         answerTimeout = 5
         indexR = 1
         tWords = '20'
+
+    elif wLevel == 3: ## Oceanic creatures
+        words = '''Anglerfish_Barreleye Fish_Beluga Whale_Blue Glaucus_Blue ringed Octopus
+_Bonnethead Shark_Bottlenose Dolphin_Dugong_Dumbo Octopus_Giant Isopod_Granrojo Jellyfish
+_Great Auk_Lanternshark_Leafy Sea Dragon_Leopard Shark_Lizardfish_Megalodon_Megamouth Shark
+_Mimic Octopus_Needlefish'''.split('_')
+        bTLength = 0.6
+        answerTimeout = 4
+        indexR = 2
+        tWords = '20'
+
+    elif wLevel == 4: ## Food
+        words = '''Pumpkin Pie_Chicken Pot Pie_Alfredo Sauce_Ice Cream Cake_Cheesecake
+_Banana Bread_Burritos_Chimichanga_Enchilada_Marinara Sauce_Broccoli_Chicken Tenders
+_Grilled Chicken_Fried Chicken_Roasted Chicken_Mashed Potatoes_Submarine Sandwiches
+_Lamb Chops_Teriyaki_Ravioli_Gelatin_Gyro Sandwhich_Chicken Nuggets_Green Bean Casserole
+_Cantalope_Fried Zucchini_Calzone'''.split('_')
+        bTLength = 0.6
+        answerTimeout = 2.5
+        indexR = 3
+        tWords = '27'
+    
 
     ###
 
@@ -124,7 +148,7 @@ Copier camera Drill Earphones Fan Fax lamp Headset iPod Juicer Monitor'''.split(
                     answer = inputimeout(prompt = 'Spell the word: ', timeout = answerTimeout + (len(question) / 4.75)).lower()
                     break
                 except TimeoutOccurred:
-                    answer = 'Oops you timed out! Mayve try an easier level first.'
+                    answer = 'Oops you timed out! Maybe try an easier level first.'
                     break
 
         else:
@@ -153,7 +177,7 @@ Copier camera Drill Earphones Fan Fax lamp Headset iPod Juicer Monitor'''.split(
 
                         except TimeoutOccurred:
                             flag = True
-                            answer = 'Oops you timed out! (Review your settings to change the timeout length)!'
+                            answer = 'Oops you timed out! Maybe try an easier level first.'
                             break
 
                         except:
