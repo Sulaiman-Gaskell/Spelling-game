@@ -43,7 +43,7 @@ while True:
     print(Fore.YELLOW + '''\n
 Medium levels:
 ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
-    print('3) Oceanic creatures*' , Fore.GREEN + ' -complete!' if wordsC[2] == '1' else Fore.RED + ' -incomplete')
+    print('3) Oceanic creatures*' , Fore.GREEN + ' -completed!' if wordsC[2] == '1' else Fore.RED + ' -incomplete')
     print(Fore.YELLOW + '4) Food*' , Fore.GREEN + '              -completed!' if wordsC[3] == '1' else\
          Fore.RED + '              -incomplete')
     time.sleep(0.1)
