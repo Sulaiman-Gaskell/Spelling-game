@@ -2,9 +2,17 @@
  Changelog
 ************
  
+2.1.0:
+	NEW: Medium levels have been added
+	Bug fixes:
+		Fixed multiple issues when timing out:
+			Spelling error
+			Wrong message
+		Length of ¬¬¬ being too short
+
 2.0.0:
 	NEW: levels, you can now play levels of varying difficulty to challenge yourself! (More details in howToPlay)
-		 (Only 2 easy levels are currently available, more will be in mulitple revs of 2.0.0)
+		 (Only 2 easy levels are currently available)
 	NEW: You can now view this changelog in-game
 	Visual changes:
 		Reworked welcome menu
