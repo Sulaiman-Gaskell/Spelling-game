@@ -84,7 +84,8 @@ while True:
         inputM = open('inputM.txt', 'w')
         print(Fore.CYAN + '''1) Natural: type how you would normally, with one whole word at a time
 
-2) Memorise: input the word letter at a time to make you think more and so learn more''')
+2) Memorise: input the word letter at a time to make you think more and so learn more
+(Note: For option 2 when multiple words need to be entered the space will be auto-completed)''')
         while True:
              try:
                 time.sleep(0.5)

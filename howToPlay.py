@@ -54,7 +54,8 @@ go = input(Fore.GREEN + '►')
 print(Fore.LIGHTGREEN_EX + '''-----------------------------------------------------------------------------------------------------------------------
 Play levels to try and beat (spell all words correctly) sets of words which vary in difficulty.
 Getting even one question wrong results in you having to starts over again!
-(User data here can also be wiped in settings alongs with preset stats)''')
+(User data here can also be wiped in settings alongs with preset stats)
+(For medium levels and higher, the input method is controlled by the computer)''')
 
 print()
 go = input(Fore.GREEN + 'Press enter to continue: ')

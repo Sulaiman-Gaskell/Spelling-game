@@ -31,7 +31,7 @@ wordsC = open('completion.txt').read().splitlines()
 
 
 clear()
-print(Fore.RED + 'Please note that all settings (excluding input method) do not affect gameplay here\n\n')
+print(Fore.RED + 'Please make sure that you have read howToPlay and reviewed your settings before playing.\n\n')
 
 
 while True:
@@ -43,8 +43,8 @@ while True:
     print(Fore.YELLOW + '''\n
 Medium levels:
 ¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
-    print('3) Oceanic creatures*' , Fore.GREEN + ' -completed!' if wordsC[2] == '1' else Fore.RED + ' -incomplete')
-    print(Fore.YELLOW + '4) Food*' , Fore.GREEN + '              -completed!' if wordsC[3] == '1' else\
+    print('3) Oceanic creatures' , Fore.GREEN + ' -completed!' if wordsC[2] == '1' else Fore.RED + ' -incomplete')
+    print(Fore.YELLOW + '4) Food' , Fore.GREEN + '              -completed!' if wordsC[3] == '1' else\
          Fore.RED + '              -incomplete')
     time.sleep(0.1)
     print(Fore.RED + '''\n
@@ -53,7 +53,7 @@ Hard levels:
     print('5) Geology' , Fore.GREEN + '        -completed!' if wordsC[4] == '1' else Fore.RED + '        -incomplete')
     print(Fore.RED + '6) The Atmosphere' , Fore.GREEN + ' -completed!' if wordsC[5] == '1' else Fore.RED + ' -incomplete')
 
-    print(Fore.CYAN + '\n* = Each question may contain more than one word')
+    print(Fore.CYAN + '\nNote: Sets above easy may contain more than one word per question')
     time.sleep(0.1)
 
     print(Fore.BLUE + '''
@@ -104,6 +104,7 @@ _Mimic Octopus_Needlefish'''.split('_')
         answerTimeout = 4
         indexR = 2
         tWords = '20'
+        inputM = 1
 
     elif wLevel == 4: ## Food
         words = '''Pumpkin Pie_Chicken Pot Pie_Alfredo Sauce_Ice Cream Cake_Cheesecake
@@ -112,9 +113,10 @@ _Grilled Chicken_Fried Chicken_Roasted Chicken_Mashed Potatoes_Submarine Sandwic
 _Lamb Chops_Teriyaki_Ravioli_Gelatin_Gyro Sandwhich_Chicken Nuggets_Green Bean Casserole
 _Cantalope_Fried Zucchini_Calzone'''.split('_')
         bTLength = 0.6
-        answerTimeout = 2.5
+        answerTimeout = 3
         indexR = 3
         tWords = '27'
+        inputM = 2
     
 
     ###
@@ -145,7 +147,7 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
             flush_input()
             while True:
                 try:
-                    answer = inputimeout(prompt = 'Spell the word: ', timeout = answerTimeout + (len(question) / 4.75)).lower()
+                    answer = inputimeout(prompt = 'Spell the word: ', timeout = answerTimeout + (len(question) / 6)).lower()
                     break
                 except TimeoutOccurred:
                     answer = 'Oops you timed out! Maybe try an easier level first.'
@@ -154,17 +156,24 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
         else:
             answer = []
             flag = False
+            x = 0
             for letter in questionV:
                 lLetter = []
+                spaceCheck = question[x]
+                x += 1
             ##for input 2
                 if flag == False:
                     while True:
                         try:
                             clear()
+                            if spaceCheck == ' ':
+                                answer.append(' ')
+                                break
                             lLetter = []
                             print(Fore.MAGENTA + '')
                             clear()
                             print(''.join(answer))
+
                             flush_input()
                             aLetter = inputimeout(prompt = 'Spell the word, letter at a time: ', timeout = answerTimeout).lower()
                             for l in aLetter:
