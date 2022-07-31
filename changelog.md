@@ -1,7 +1,20 @@
 ************
  Changelog
 ************
- 
+
+2.0.2:
+	Changes to pLevels:
+		For medium levels and higher, the input method is controlled by the computer
+	Other changes:
+		Added tags to different gamemodes
+		Changes name of presets to classic
+		Updated howToPlay
+		Added a note for input method 2 in settings
+		Changed start up screen
+	Bug fixes:
+		(Major fix) - Issue with time stacking with your own sets
+		Colouring issue with default difficulty
+
 2.0.1:
 	NEW: Medium levels have been added (One has been replaced: Natural disasters --> Food)
 	Bug fixes:

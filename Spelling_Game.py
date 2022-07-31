@@ -64,7 +64,7 @@ clear()
 
 def banner():
     print(Fore.YELLOW + '''*********************************
-2.0.1: New gamemode!
+2.0.2: New gamemode!
 *********************************
 ''')
 
@@ -78,12 +78,10 @@ while again == 'w':
 
 
     def welcomeMsg():
-        print(Fore.MAGENTA + 'Welcome to the spelling game!')
+        print(Fore.MAGENTA + 'Welcome to the spelling game!',Fore.CYAN +  '(Backed up by GitHub)')
         time.sleep(0.1)
         print(Fore.GREEN + '''
-This is where you are given a word as shown on your screen
-which then disappears after a few seconds.
-You then have to spell that word.''')
+Make sure to read the howToPlay and review your settings''')
 
     welcomeMsg()
 
@@ -157,10 +155,11 @@ You then have to spell that word.''')
         exit()
     elif option == 1:
         clear()
-        print(Fore.CYAN + '''1) Play using presets*
-2) Play and manage your own sets
-3) Play levels
-''')    
+        print(Fore.CYAN + '1) Play classic*',Fore.RED + '--------------------- #Competitive; with offical scoring')
+        print(Fore.CYAN + '2) Play and manage your own sets',Fore.RED + '----- #Non-competitive; but includes different difficulties')
+        print(Fore.CYAN + '3) Play levels',Fore.RED + '----------------------- \
+#Unofficial; multi-word questions which tests your memory and wps')
+        print()
         print('*', Fore.RED + '= paused session\'s points are retained if you choose this option')
 
         while True:

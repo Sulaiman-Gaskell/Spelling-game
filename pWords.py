@@ -342,16 +342,16 @@ while cSet != 'leave':
                 dDifficulty = 'hard'
             while True:
                 try:
-                    print(Fore.MAGENTA + 'Choose a difficulty to play or press enter to play \
-on default which is currently set to:', dDifficulty)
+                    print(Fore.MAGENTA + '\nChoose a difficulty to play or press enter to play \
+on default which is currently set to:',Fore.CYAN + dDifficulty)
                     difficulty = input('-> ')
                     if difficulty == '3' or difficulty == '2' or difficulty == '1' or difficulty == '':
                         break
                     else:
                         difficulty = int('f')
                 except ValueError:
-                    print()
                     print(Fore.RED + 'Oopsie this is either invalid or not available')
+                    print()
 
             def cDefault(difficulty):
                 clear()
@@ -388,21 +388,21 @@ on default which is currently set to:', dDifficulty)
 
             if difficulty == '1':
                 cDefault(difficulty)
-                tLength = 0.8
+                btLength = 0.8
             elif difficulty == '2':
                 cDefault(difficulty)
-                tLength = 0.3
+                btLength = 0.3
             elif difficulty == '3':
                 cDefault(difficulty)
-                tLength = 0.05
+                btLength = 0.05
             else:
                 difficulty = open('dDifficulty.txt').read()
                 if difficulty == '1':
-                    tLength = 0.8
+                    btLength = 0.8
                 elif difficulty == '2':
-                    tLength = 0.3
+                    btLength = 0.3
                 else:
-                    tLength = 0.05
+                    btLength = 0.05
 
             clear()
             print(Fore.YELLOW + 'Starting', end='')
@@ -450,7 +450,7 @@ on default which is currently set to:', dDifficulty)
                 for letter in questionV:
                     question.append(letter)
 
-                tLength = tLength + (len(question) / 2.5)
+                tLength = btLength + (len(question) / 2.5)
 
                 print(questionV)
                 time.sleep(tLength)
