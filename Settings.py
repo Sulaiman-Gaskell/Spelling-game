@@ -65,12 +65,13 @@ while True:
     while True:
         try:
             flush_input()
-            setting = int(input(Fore.MAGENTA + '\nWhat would you like to do: '))
+            print(Fore.MAGENTA + '\nWhat would you like to do: ')
+            setting = int(input(Fore.MAGENTA + '-> '))
             if setting == 1 or setting == 2 or setting == 3 or setting == 4 or setting == 5: 
                 break
             elif setting == 6:
                 clear()
-                call(['python', 'Spelling_Game.py'])
+                call(['python', 'classicMode.py'])
                 exit()
             else:
                 setting = int('f')
@@ -85,12 +86,14 @@ while True:
         print(Fore.CYAN + '''1) Natural: type how you would normally, with one whole word at a time
 
 2) Memorise: input the word letter at a time to make you think more and so learn more
+
 (Note: For option 2 when multiple words need to be entered the space will be auto-completed)''')
         while True:
              try:
                 time.sleep(0.5)
                 flush_input()
-                choice = int(input(Fore.MAGENTA + '\nChoose input method: '))
+                print(Fore.MAGENTA + '\nChoose input method: ')
+                choice = int(input(Fore.MAGENTA + '-> '))
                 if choice > 2 or choice < 1:
                     choice = int('f')
                 break
@@ -118,7 +121,8 @@ Why is this a thing? Well anyWord could potentally contain explicit words''')
              try:
                 time.sleep(0.5)
                 flush_input()
-                choice = int(input(Fore.MAGENTA + '\nChoose an option: '))
+                print(Fore.MAGENTA + '\nChoose an option: ')
+                choice = int(input('-> '))
                 if choice > 2 or choice < 1:
                     choice = int('f')
                 break
@@ -143,13 +147,16 @@ Setting updated''')
 5) Too far! (3 seconds*), (+15 points**)
 
 * = to answer; Also gain extra time based on word length of the question
-** = per question''')
+** = per question
+
+Note: This does not affect levels''')
 
         while True:
              try:
                 time.sleep(0.5)
                 flush_input()
-                choice = int(input(Fore.MAGENTA + '\nChoose an overall difficulty: '))
+                print(Fore.MAGENTA + '\nChoose an overall difficulty: ')
+                choice = int(input('-> '))
                 if choice > 5 or choice < 1:
                     choice = int('f')
                 break
@@ -172,7 +179,8 @@ Setting updated''')
         difficultyO.close()
 
     elif setting == 4:
-        confrim = input(Fore.MAGENTA + 'Press anything to confrim apart from \'n\' which cancels this: ').lower()
+        print(Fore.MAGENTA + 'Press anything to confrim apart from \'n\' which cancels this:')
+        confrim = input('-> ').lower()
         clear()
         if confrim == 'n':
             ''

@@ -15,7 +15,7 @@ else:
 clear()
 time.sleep(0.1)
 
-print(Fore.GREEN + 'Welcome to The Spelling Game! (► = press enter)')
+print(Fore.GREEN + 'Welcome to The Spelling Game! (► = press enter) (-> = input something)')
 print(Fore.YELLOW + '''-----------------------------------------------------------------------------------------------------------------------
 This is where a word is shown on your screen which then disappears after a few seconds.
 You then have to type that word in afterwards when prompted to.
@@ -58,7 +58,7 @@ Getting even one question wrong results in you having to starts over again!
 (For medium levels and higher, the input method is controlled by the computer)''')
 
 print()
-go = input(Fore.GREEN + 'Press enter to continue: ')
+go = input(Fore.GREEN + 'Press enter to leave: ')
 clear()
 call(['python', 'Spelling_Game.py'])
 sys.exit()

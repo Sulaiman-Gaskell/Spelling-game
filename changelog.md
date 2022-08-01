@@ -2,6 +2,19 @@
  Changelog
 ************
 
+2.1.0:
+	NEW: Basic features have been added to player stats
+	NEW: Change how you input things or press enter
+	Visual changes:
+		Changed some colours
+		Reworked the version banner
+	Other changes:
+		Ending a classic game now sends you back to the main menu
+		Pausing a classic game now only allows you to change your difficulty
+		Added note to overall difficulty
+	Balance changes:
+		Reduced the base time you have to answer each question for both medium levels
+
 2.0.2:
 	Changes to pLevels:
 		For medium levels and higher, the input method is controlled by the computer

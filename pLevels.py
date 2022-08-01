@@ -60,9 +60,11 @@ Hard levels:
 Enter 'l' to leave''')
     while True:
         try:
-            wLevel = input(Fore.MAGENTA + '\n\nChoose a level to play: ')
+            flush_input()
+            print(Fore.MAGENTA + '\n\nChoose a level to play: ')
+            wLevel = input('-> ')
             if wLevel == 'l':
-                call(['python', 'Spelling_Game.py'])
+                call(['python', 'classicMode.py'])
                 exit()
             wLevel = int(wLevel)
             if wLevel > 4 or wLevel < 1:
@@ -91,7 +93,7 @@ Jellyfish Crab Giraffe Camel Starfish Koala Alligator Owl Tiger Bear whale'''.sp
         words = '''clock charger counter Blender speaker Bulb fan dryer Computer
 Copier camera Drill Earphones Fan Fax lamp Headset iPod Juicer Monitor'''.split()
         bTLength = 0.8
-        answerTimeout = 5
+        answerTimeout = 2
         indexR = 1
         tWords = '20'
 
@@ -101,7 +103,7 @@ _Bonnethead Shark_Bottlenose Dolphin_Dugong_Dumbo Octopus_Giant Isopod_Granrojo 
 _Great Auk_Lanternshark_Leafy Sea Dragon_Leopard Shark_Lizardfish_Megalodon_Megamouth Shark
 _Mimic Octopus_Needlefish'''.split('_')
         bTLength = 0.6
-        answerTimeout = 4
+        answerTimeout = 2
         indexR = 2
         tWords = '20'
         inputM = 1
@@ -147,7 +149,8 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
             flush_input()
             while True:
                 try:
-                    answer = inputimeout(prompt = 'Spell the word: ', timeout = answerTimeout + (len(question) / 6)).lower()
+                    print('Spell the word: ')
+                    answer = inputimeout(prompt = '\n-> ', timeout = answerTimeout + (len(question) / 6)).lower()
                     break
                 except TimeoutOccurred:
                     answer = 'Oops you timed out! Maybe try an easier level first.'
@@ -173,9 +176,9 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
                             print(Fore.MAGENTA + '')
                             clear()
                             print(''.join(answer))
-
+                            print('Spell the word, letter at a time:')
                             flush_input()
-                            aLetter = inputimeout(prompt = 'Spell the word, letter at a time: ', timeout = answerTimeout).lower()
+                            aLetter = inputimeout(prompt = '\n-> ', timeout = answerTimeout).lower()
                             for l in aLetter:
                                 lLetter.append(l)
                             if len(lLetter) == 1:
@@ -208,7 +211,8 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
             print(Fore.MAGENTA + 'You put:', Fore.RED +  ''.join(answer))
             print()
             print(Fore.GREEN + 'Correct answer:',''.join(question))
-            go = input(Fore.MAGENTA + '\nPress enter to continue: ')
+            flush_input()
+            go = input(Fore.MAGENTA + '\n►')
             call(['python', 'pLevels.py'])
             exit()
 
@@ -218,7 +222,8 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
     if word == len(words):
         print(Fore.GREEN + 'Congrats, you beat this level!\n')
         time.sleep(1)
-        go = input(Fore.MAGENTA + 'Press enter to continue: ')
+        flush_input()
+        go = input(Fore.MAGENTA + '\n►')
         
         wordsC[indexR] = '1'
         completion = open('completion.txt','w')

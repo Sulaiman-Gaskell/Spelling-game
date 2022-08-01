@@ -1,12 +1,16 @@
-﻿import time
-import random
-from colorama import Fore,Back,Style,init
+﻿import random
+import time
+
+from colorama import Back, Fore, Style, init
+
 init()
 import os
+import platform
 import sys
 from subprocess import call
-from inputimeout import inputimeout, TimeoutOccurred
-import platform
+
+from inputimeout import TimeoutOccurred, inputimeout
+
 
 def flush_input():
     try:
@@ -14,7 +18,8 @@ def flush_input():
         while msvcrt.kbhit():
             msvcrt.getch()
     except ImportError:
-        import sys, termios    #for linux/unix
+        import sys  # for linux/unix
+        import termios
         termios.tcflush(sys.stdin, termios.TCIOFLUSH)
 
 
@@ -63,9 +68,9 @@ again = 'w'
 clear()
 
 def banner():
-    print(Fore.YELLOW + '''*********************************
-2.0.2: New gamemode!
-*********************************
+    print(Fore.YELLOW + Style.DIM + '''*****************************************
+Current --> 2.1.0 │ Last_Major --> 2.1.0 
+*****************************************
 ''')
 
 def beta():
@@ -78,27 +83,26 @@ while again == 'w':
 
 
     def welcomeMsg():
-        print(Fore.MAGENTA + 'Welcome to the spelling game!',Fore.CYAN +  '(Backed up by GitHub)')
+        print(Fore.BLUE + Style.NORMAL + 'Welcome to the spelling game!',Fore.CYAN +  '(Backed up by GitHub)')
         time.sleep(0.1)
         print(Fore.GREEN + '''
-Make sure to read the howToPlay and review your settings''')
+Don't forget to read the howToPlay and review your settings!''')
 
     welcomeMsg()
 
     time.sleep(0.1)
     print('\n')
-    print(Fore.CYAN + '''1) Play*
+    print(Fore.CYAN + '''1) Play
 2) Go to settings
 3) View game related information
 4) Exit game
 ''')
-    print('*', Fore.RED + '= paused session\'s points are retained if you choose this option')
 
     while True:
         try:
             flush_input()
-            print(Fore.YELLOW + '')
-            option = int(input('Enter the number of what you would like to do: '))
+            print(Fore.MAGENTA + '\nEnter the number of what you would like to do')
+            option = int(input('-> '))
             if option > 4 or option < 1:
                 option = int('f')
             break
@@ -113,7 +117,7 @@ Make sure to read the howToPlay and review your settings''')
 
     elif option == 3:
         clear()
-        print(Fore.CYAN + '''1) View user info (coming soon)
+        print(Fore.CYAN + '''1) View user info
 2) View game changelog
 3) View howToPlay
 ''')
@@ -121,24 +125,27 @@ Make sure to read the howToPlay and review your settings''')
             try:
                 time.sleep(0.1)
                 flush_input()
-                print(Fore.YELLOW + '')
-                option = int(input('Enter the number of what you would like to do: '))
-                if option > 3 or option < 2:
+                print(Fore.MAGENTA + 'Enter the number of what you would like to do: ')
+                option = int(input('-> '))
+                if option > 3 or option < 1:
                     option = int('f')
                 break
             except ValueError:
                 print(Fore.RED + 'Oops this is not avalable yet' )
                 print()
                 
-     ###if option == 1:
+        if option == 1:
+            call(['python', 'pData.py'])
+            exit()
+
         if option == 2:
             changelog = open('changelog.md').read()
             clear()
             print(Fore.WHITE + changelog)
             print(Fore.MAGENTA + '\n(Most recent update is at the top)')
-            go = input(Fore.GREEN + '\nPress enter to continue: ')
+            go = input(Fore.GREEN + '\n►')
             clear()
-            call(['python', 'Spelling_Game.py'])
+            call(['python', 'classicMode.py'])
             exit()
 
         elif option == 3:
@@ -151,23 +158,27 @@ Make sure to read the howToPlay and review your settings''')
         sys.exit()
     elif option == 5:
         clear()
-        call(['python', 'Spelling_Game.py'])
+        call(['python', 'classicMode.py'])
         exit()
     elif option == 1:
         clear()
-        print(Fore.CYAN + '1) Play classic*',Fore.RED + '--------------------- #Competitive; with offical scoring')
+        print(Fore.CYAN + '1) Play classic',Fore.RED + '---------------------- #Competitive; with offical scoring')
+        print()
+        time.sleep(0.2)
         print(Fore.CYAN + '2) Play and manage your own sets',Fore.RED + '----- #Non-competitive; but includes different difficulties')
+        print()
+        time.sleep(0.2)
         print(Fore.CYAN + '3) Play levels',Fore.RED + '----------------------- \
 #Unofficial; multi-word questions which tests your memory and wps')
+        time.sleep(0.2)
         print()
-        print('*', Fore.RED + '= paused session\'s points are retained if you choose this option')
 
         while True:
             try:
                 time.sleep(0.1)
                 flush_input()
-                print(Fore.YELLOW + '')
-                option = int(input('Enter the number of what you would like to do: '))
+                print(Fore.MAGENTA + '\nEnter the number of what you would like to do: ')
+                option = int(input('-> '))
                 if option > 3 or option < 1:
                     option = int('f')
                 break
@@ -202,8 +213,8 @@ Make sure to read the howToPlay and review your settings''')
     while True:
         try:
             flush_input()
-            print()
-            difficulty = int(input(Fore.GREEN + 'Choose a difficulty: '))
+            print(Fore.GREEN + '\nChoose a difficulty: ')
+            difficulty = int(input('-> '))
             if difficulty > sMax or difficulty < 1:
                 difficulty = int('f')
             break
@@ -237,7 +248,7 @@ column evaluation lovely concentration evidence marriage material potential sinc
     print()
     time.sleep(0.5)
     flush_input()
-    go = input(Fore.YELLOW + 'Press enter to confirm and play: ')
+    go = input(Fore.YELLOW + '►')
     print('\n')
     print(Fore.BLUE + '3')
     time.sleep(0.4)
@@ -310,7 +321,8 @@ column evaluation lovely concentration evidence marriage material potential sinc
             flush_input()
             while True:
                 try:
-                    answer = inputimeout(prompt = 'Spell the word: ', timeout = answeTimeout + (len(question) / 4.75)).lower()
+                    print('Spell the word:')
+                    answer = inputimeout(prompt = '\n-> ', timeout = answeTimeout + (len(question) / 4.75)).lower()
                     break
                 except TimeoutOccurred:
                     answer = 'Oops you timed out! (Review your settings to change the timeout length)!'
@@ -330,8 +342,9 @@ column evaluation lovely concentration evidence marriage material potential sinc
                             print(Fore.GREEN + 'You currently have', points, 'points')
                             print(Fore.MAGENTA + '')
                             print(''.join(answer))
+                            print('Spell the word, letter at a time:')
                             flush_input()
-                            aLetter = inputimeout(prompt = 'Spell the word, letter at a time: ', timeout = answeTimeout).lower()
+                            aLetter = inputimeout(prompt = '\n-> ', timeout = answeTimeout).lower()
                             for l in aLetter:
                                 lLetter.append(l)
                             if len(lLetter) == 1:
@@ -377,9 +390,10 @@ column evaluation lovely concentration evidence marriage material potential sinc
             try:
                 flush_input()
                 time.sleep(0.2)
-                again = input(Fore.YELLOW + '''\n\nPress enter to play again,
-or type 'w' to pause this session and return to the main menu,
-or type 'end' to finish: ''').lower()
+                print(Fore.BLUE + '''\n\nPress enter to play again,
+or type 'w' to change difficulty,
+or type 'end' to receive stats: ''')
+                again = input('\n-> ')
                 if again == '' or again == 'w' or again == 'end':
                     break
                 else:
@@ -402,8 +416,12 @@ print(Fore.YELLOW + '')
 cStats = open('cStats.txt', 'w')
 total = correct + incorrect
 total = str(total)
-perc = float((correct / int(total)) * 100)
-rLines = ['Total points accumulated: '+ str(points),'Total number of questions answered: ' + total, '', str(perc)\
+perc = int((correct / int(total)) * 100)
+if inputM == '1':
+    cInput = 'Input method used: Natural'
+elif inputM == '2':
+    cInput = 'Input method used: Memorise'
+rLines = ['Total points accumulated: '+ str(points),'Total number of questions answered: ' + total, '', cInput, '', str(perc)\
 + '% accuracy',  '', 'Number of quesions answered for each difficulty:','',  'Easy: ' + str(easy),'Medium: '\
 + str(medium),'Hard: ' + str(hard),'AnyWord: ' + str(anyW)]
 for line in rLines:
@@ -430,7 +448,7 @@ cStats.close()
 pStats.close()
 
 flush_input()
-go = input(Fore.GREEN + 'Press enter to continue: ')
+go = input(Fore.GREEN + '►')
 clear()
 bStats = open('bStats.txt', 'r')
 print(Fore.GREEN + 'best ever stats in one session: ')
@@ -452,6 +470,12 @@ if int(bTotal) <= points:
     print(Fore.GREEN + '\nWell done new best stats have been recorded and will now be displayed instead of the above from now on!')
 else:
     print(Fore.GREEN + 'Best stats are unchanged')
+
+flush_input()
+go = input('\n► ')
+clear()
+call(['python', 'classicMode.py'])
+sys.exit()
 
 
 

@@ -113,7 +113,8 @@ while cSet != 'leave':
     while True:
         try:
             flush_input()
-            cSet = input(Fore.GREEN + 'Choose a set number to play or edit: ')
+            print(Fore.GREEN + 'Choose a set number to play or edit: ')
+            cSet = input('-> ')
             if int(cSet) > 6 or int(cSet) < 1:
                 cSet = int('f')
             else:
@@ -133,7 +134,7 @@ while cSet != 'leave':
         print(Fore.BLUE + '2) Change title')
         print('3) Add words')
         print(Fore.RED + '4) Remove specific words')
-        print('5) Clear word list and title')
+        print('5) Clear word list and title')   
 
         time.sleep(0.1)
 
@@ -141,7 +142,8 @@ while cSet != 'leave':
             try:
                 flush_input()
                 print()
-                option = int(input(Fore.GREEN + 'What would you like to do: '))
+                print(Fore.GREEN + 'What would you like to do: ')
+                option = int(input('-> '))
                 if option > 5 or option < 1:
                     option = int('f')
                 break
@@ -162,7 +164,8 @@ while cSet != 'leave':
                 setT = open('pWords5T.txt', 'w')    
 
             flush_input()
-            newTitle = input(Fore.GREEN + 'Enter your new title: ').title()
+            print(Fore.GREEN + 'Enter your new title: ')
+            newTitle = input('-> ').title()
             setT.write(newTitle)
             setT.close()
             print()
@@ -210,7 +213,8 @@ while cSet != 'leave':
 
             flush_input()
             print()
-            add2List = input(Fore.GREEN + 'Enter words you would like to add seperated by a single space: ').lower().split()
+            print(Fore.GREEN + 'Enter words you would like to add seperated by a single space: ')
+            add2List = input('-> ').lower().split()
             for word in add2List:
                 wordList.write(word)
                 wordList.write('\n')
@@ -252,7 +256,7 @@ while cSet != 'leave':
             print(Fore.MAGENTA + 'All cleared!')
             time.sleep(1.2)
             clear()
-            call(['python', 'pWords.py'])
+            call(['python', 'classicMode.py'])
             sys.exit()
 
         elif option == 4:
@@ -275,7 +279,8 @@ while cSet != 'leave':
                 print(Fore.CYAN + word)
             flush_input()
             print()
-            words2Remove = input(Fore.GREEN + 'Enter words you would like to remove seperated by a space: ').lower().split()
+            print(Fore.GREEN + 'Enter words you would like to remove seperated by a space: ')
+            words2Remove = input('-> ').lower().split()
             for word in words2Remove:
                 for cWords in wordList:
                     if word == cWords:
@@ -360,7 +365,8 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
 ''')
                 while True:
                     try:
-                        option = int(input(Fore.MAGENTA + 'Choose an option: '))
+                        print(Fore.MAGENTA + 'Choose an option: ')
+                        option = int(input('-> '))
                         if option > 2 or option < 1:
                             option = int('f')
                         break
@@ -464,7 +470,8 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
                     flush_input()
                     while True:
                         try:
-                            answer = inputimeout(prompt = 'Spell the word: ', timeout = answeTimeout).lower()
+                            print('Spell the word:')
+                            answer = inputimeout(prompt = '-> ', timeout = answeTimeout).lower()
                             break
                         except TimeoutOccurred:
                             answer = 'Oops you timed out! (Review your settings to change the timeout length)!'
@@ -484,8 +491,9 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
                                     print(Fore.GREEN + 'You currently have', points, 'points')
                                     print(Fore.MAGENTA + '')
                                     print(''.join(answer))
+                                    print('Spell the word, letter at a time:')
                                     flush_input()
-                                    aLetter = inputimeout(prompt = 'Spell the word, letter at a time: ', timeout = answeTimeout).lower()
+                                    aLetter = inputimeout(prompt = '\n-> ', timeout = answeTimeout).lower()
                                     for l in aLetter:
                                         lLetter.append(l)
                                     if len(lLetter) == 1:
@@ -526,8 +534,9 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
                 while True:
                     try:
                         flush_input()
-                        again = input(Fore.YELLOW + '''\n\nPress enter to play again,
-or type 'w' to go back to main screen: ''').lower()
+                        print(Fore.YELLOW + '''\n\nPress enter to play again,
+or type 'w' to go back to main screen: ''')
+                        again = input('\n-> ').lower()
                         if again == '' or again == 'w':
                             break
                         else:
@@ -543,7 +552,7 @@ or type 'w' to go back to main screen: ''').lower()
                     print()
                     print(str((correct / (correct + incorrect)) * 100) + '% Accuracy')
                     flush_input()
-                    go = input('\nPress enter to continue: ')
+                    go = input('\n►')
                     clear()
                     call(['python', 'pWords.py'])
                     sys.exit()
