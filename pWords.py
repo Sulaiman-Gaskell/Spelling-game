@@ -125,9 +125,8 @@ while cSet != 'leave':
     
     clear()
     if cSet == '6':
-        call(['python','Spelling_Game.py'])
+        call(['python','classicMode.py'])
         sys.exit()
-
 
     else:
         print(Fore.GREEN + '1) Play word list')
