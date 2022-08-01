@@ -60,5 +60,5 @@ Getting even one question wrong results in you having to starts over again!
 print()
 go = input(Fore.GREEN + 'Press enter to leave: ')
 clear()
-call(['python', 'Spelling_Game.py'])
+call(['python', 'classicMode.py'])
 sys.exit()
