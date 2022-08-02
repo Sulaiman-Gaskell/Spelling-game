@@ -7,6 +7,7 @@ import sys
 from subprocess import call
 from inputimeout import inputimeout, TimeoutOccurred
 import platform
+import keyboard
 
 def flush_input():
     try:

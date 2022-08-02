@@ -10,6 +10,7 @@ import sys
 from subprocess import call
 
 from inputimeout import TimeoutOccurred, inputimeout
+import keyboard
 
 
 def flush_input():
@@ -21,6 +22,8 @@ def flush_input():
         import sys  # for linux/unix
         import termios
         termios.tcflush(sys.stdin, termios.TCIOFLUSH)
+
+
 
 
 inputM = open('inputM.txt', 'r')
@@ -69,7 +72,7 @@ clear()
 
 def banner():
     print(Fore.YELLOW + Style.DIM + '''*****************************************
-Current --> 2.1.0 │ Last_Major --> 2.1.0 
+Current --> 2.1.1 │ Last_Major --> 2.1.0 
 *****************************************
 ''')
 
@@ -78,124 +81,136 @@ def beta():
 therefore some features may not work correctly\n''')
 
 
-while again == 'w':
-    banner()
+banner()
 
 
-    def welcomeMsg():
-        print(Fore.BLUE + Style.NORMAL + 'Welcome to the spelling game!',Fore.CYAN +  '(Backed up by GitHub)')
-        time.sleep(0.1)
-        print(Fore.GREEN + '''
+def welcomeMsg():
+    print(Fore.BLUE + Style.NORMAL + 'Welcome to the spelling game!')
+    time.sleep(0.1)
+    print(Fore.GREEN + '''
 Don't forget to read the howToPlay and review your settings!''')
 
-    welcomeMsg()
+welcomeMsg()
 
-    time.sleep(0.1)
-    print('\n')
-    print(Fore.CYAN + '''1) Play
+time.sleep(0.1)
+print('\n')
+print(Fore.CYAN + '''1) Play
 2) Go to settings
 3) View game related information
 4) Exit game
 ''')
 
-    while True:
-        try:
-            flush_input()
-            print(Fore.MAGENTA + '\nEnter the number of what you would like to do')
-            option = int(input('-> '))
-            if option > 4 or option < 1:
-                option = int('f')
-            break
-        except ValueError:
-            print(Fore.RED + 'Invalid try again' )
 
-    if option == 2:
-        clear()
-        time.sleep(0.1)
-        call(['python','Settings.py'])
-        sys.exit()
+print(Fore.MAGENTA + '\nEnter the number of what you would like to do:')
+while True:
+    flush_input()
+    if keyboard.is_pressed('1'):
+        option = 1
+        break
+    elif keyboard.is_pressed('2'):
+        option = 2
+        break
+    elif keyboard.is_pressed('3'):
+        option = 3
+        break
+    elif keyboard.is_pressed('4'):
+        option = 4
+        break
 
-    elif option == 3:
-        clear()
-        print(Fore.CYAN + '''1) View user info
+
+if option == 2:
+    call(['python','Settings.py'])
+    sys.exit()
+
+elif option == 3:
+    clear()
+    clear()
+    print(Fore.RED + 'Press enter to continue')
+    keyboard.wait('enter')
+    clear()
+    time.sleep(0.1)
+    print(Fore.CYAN + '''1) View user info
 2) View game changelog
 3) View howToPlay
 ''')
-        while True:
-            try:
-                time.sleep(0.1)
-                flush_input()
-                print(Fore.MAGENTA + 'Enter the number of what you would like to do: ')
-                option = int(input('-> '))
-                if option > 3 or option < 1:
-                    option = int('f')
-                break
-            except ValueError:
-                print(Fore.RED + 'Oops this is not avalable yet' )
-                print()
-                
-        if option == 1:
-            call(['python', 'pData.py'])
-            exit()
+    print(Fore.MAGENTA + '\nEnter the number of what you would like to do:')
 
-        if option == 2:
-            changelog = open('changelog.md').read()
-            clear()
-            print(Fore.WHITE + changelog)
-            print(Fore.MAGENTA + '\n(Most recent update is at the top)')
-            go = input(Fore.GREEN + '\n►')
-            clear()
-            call(['python', 'classicMode.py'])
-            exit()
 
-        elif option == 3:
+    while True:
+        flush_input()
+        if keyboard.is_pressed('1'):
+            option = 1
+            break
+        elif keyboard.is_pressed('2'):
+            option = 2
+            break
+        elif keyboard.read_key() == '3':
             call(['python','howToPlay.py'])
-            sys.exit()   
+            sys.exit()
 
-    elif option == 4:
+            
+    if option == 1:
+        call(['python', 'pData.py'])
+        exit()
+
+    elif option == 2:
+        changelog = open('changelog.md').read()
         clear()
-        print(Fore.GREEN + 'Closing...')
-        sys.exit()
-    elif option == 5:
+        print(Fore.WHITE + changelog)
+        print(Fore.MAGENTA + '\n(Most recent update is at the top)')
+        print(Fore.GREEN + '\nPress enter to continue')
+        keyboard.wait('enter')
         clear()
         call(['python', 'classicMode.py'])
         exit()
-    elif option == 1:
-        clear()
-        print(Fore.CYAN + '1) Play classic',Fore.RED + '---------------------- #Competitive; with offical scoring')
-        print()
-        time.sleep(0.2)
-        print(Fore.CYAN + '2) Play and manage your own sets',Fore.RED + '----- #Non-competitive; but includes different difficulties')
-        print()
-        time.sleep(0.2)
-        print(Fore.CYAN + '3) Play levels',Fore.RED + '----------------------- \
+
+  
+
+elif option == 4:
+    clear()
+    flush_input()
+    print(Fore.GREEN + 'Closing...')
+    sys.exit()
+elif option == 5:
+    clear()
+    call(['python', 'classicMode.py'])
+    exit()
+elif option == 1:
+    clear()
+    print(Fore.CYAN + '1) Play classic',Fore.RED + '---------------------- #Competitive; with offical scoring')
+    print()
+    time.sleep(0.2)
+    print(Fore.CYAN + '2) Play and manage your own sets',Fore.RED + '----- #Non-competitive; but includes different difficulties')
+    print()
+    time.sleep(0.2)
+    print(Fore.CYAN + '3) Play levels',Fore.RED + '----------------------- \
 #Unofficial; multi-word questions which tests your memory and wps')
-        time.sleep(0.2)
-        print()
+    time.sleep(0.2)
+    print()
 
-        while True:
-            try:
-                time.sleep(0.1)
-                flush_input()
-                print(Fore.MAGENTA + '\nEnter the number of what you would like to do: ')
-                option = int(input('-> '))
-                if option > 3 or option < 1:
-                    option = int('f')
-                break
-            except ValueError:
-                print(Fore.RED + 'Oops this is not avalable yet' )
-                print()
+    print(Fore.MAGENTA + '\nEnter the number of what you would like to do:')
+    while True:
+        flush_input()
+        if keyboard.is_pressed('1'):
+            option = 1
+            break
+        elif keyboard.is_pressed('2'):
+            option = 2
+            break
+        elif keyboard.is_pressed('3'):
+            option = 3
+            break
 
-        if option == 2:
-            call(['python', 'pWords.py'])
-            sys.exit()
-        elif option == 3:
-            call(['python', 'pLevels.py'])
-            sys.exit()
-        else:
-            ''
+    if option == 2:
+        call(['python', 'pWords.py'])
+        sys.exit()
+    elif option == 3:
+        call(['python', 'pLevels.py'])
+        sys.exit()
+    else:
+        ''
 
-
+while again == 'w':    
     clear()
     print(Fore.GREEN + '1) Easy')
     time.sleep(0.1)
@@ -210,17 +225,24 @@ Don't forget to read the howToPlay and review your settings!''')
     else:
         sMax = 3
 
+    print(Fore.GREEN + '\nChoose a difficulty: ')
     while True:
-        try:
-            flush_input()
-            print(Fore.GREEN + '\nChoose a difficulty: ')
-            difficulty = int(input('-> '))
-            if difficulty > sMax or difficulty < 1:
-                difficulty = int('f')
+        flush_input()
+        if keyboard.is_pressed('1'):
+            difficulty = 1
             break
-        except ValueError:
-            print(Fore.RED + 'Invalid  try again')
-            print()
+        elif keyboard.is_pressed('2'):
+            difficulty = 2
+            break
+        elif keyboard.is_pressed('3'):
+            difficulty = 3
+            break
+
+        elif sMax == 4 and keyboard.is_pressed('4'):
+            difficulty = 4
+            break
+
+
     easyL = '''Doll Chair Toy Mask Red Brother Honey Lunch Mother Table
 Jug	Jelly Eight Piece Friend Camel Family Feast Tree Whale Pony Jump Again Flower Tree Nut
 Yellow Simple Drawing Follow Birthday Boat Apple Animal Bell Bounce Crown Castle Drum Dust YakZip
@@ -248,7 +270,8 @@ column evaluation lovely concentration evidence marriage material potential sinc
     print()
     time.sleep(0.5)
     flush_input()
-    go = input(Fore.YELLOW + '►')
+    print(Fore.YELLOW + 'Press enter to confirm and play')
+    keyboard.wait('enter')
     print('\n')
     print(Fore.BLUE + '3')
     time.sleep(0.4)
@@ -385,21 +408,23 @@ column evaluation lovely concentration evidence marriage material potential sinc
             print()
             print(Fore.GREEN + 'Correct answer:',''.join(question))
             
-    
+        flush_input()
+        print(Fore.BLUE + '''\n\nPress space to play again,
+or press 'w' to change difficulty,
+or press 'e' to receive stats: ''')
+
+        
         while True:
-            try:
-                flush_input()
-                time.sleep(0.2)
-                print(Fore.BLUE + '''\n\nPress enter to play again,
-or type 'w' to change difficulty,
-or type 'end' to receive stats: ''')
-                again = input('\n-> ')
-                if again == '' or again == 'w' or again == 'end':
-                    break
-                else:
-                    again = int('f')
-            except:
-                print(Fore.RED + 'Invalid')
+            flush_input()
+            if keyboard.is_pressed(' '):
+                again = ''
+                break
+            elif keyboard.is_pressed('w'):
+                again = 'w'
+                break
+            elif keyboard.is_pressed('e'):
+                again = 'end'
+                break
         clear()
         
         if again == 'end':

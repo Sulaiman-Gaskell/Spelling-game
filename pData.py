@@ -7,6 +7,7 @@ import sys
 from subprocess import call
 from inputimeout import inputimeout, TimeoutOccurred
 import platform
+import keyboard
 
 def flush_input():
     try:
@@ -31,23 +32,17 @@ while True:
 press 'l' to leave
     ''')
 
+    time.sleep(0.1)
+    print(Fore.MAGENTA + 'Choose an option:')
     while True:
-        try:
-            time.sleep(0.1)
-            print(Fore.MAGENTA + 'Choose an option:')
-            option = (input('-> '))
-            if option == 'l':
-                clear()
-                call(['python', 'classicMode.py'])
-                sys.exit()
-
-            option = int(option)
-            if option > 1 or option < 1:
-                option = int('f')
+        if keyboard.is_pressed('l'):
+            clear()
+            call(['python', 'classicMode.py'])
+            sys.exit()
+        elif keyboard.is_pressed('1'):
+            option = 1
             break
-        except:
-            print(Fore.RED + 'This is currently not available')
-            print()
+
 
     clear()
     if option == 1:
@@ -65,5 +60,6 @@ press 'l' to leave
         time.sleep(0.2)
         print(bStats)
         time.sleep(0.2)
-        go = input(Fore.GREEN + '\n►')
+        print(Fore.GREEN + 'Press enter to continue:')
+        keyboard.wait('enter')
         clear()

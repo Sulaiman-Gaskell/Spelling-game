@@ -1,9 +1,9 @@
-Total points accumulated: -15
+Total points accumulated: 5
 Total number of questions answered: 1
 
-Input method used: Memorise
+Input method used: Natural
 
-0% accuracy
+100% accuracy
 
 Number of quesions answered for each difficulty:
 

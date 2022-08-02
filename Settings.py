@@ -6,6 +6,7 @@ import os
 import sys
 from subprocess import call
 import platform
+import keyboard
 
 def flush_input():
     try:
