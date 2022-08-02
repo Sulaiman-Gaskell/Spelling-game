@@ -7,6 +7,7 @@ import sys
 from subprocess import call
 from inputimeout import inputimeout, TimeoutOccurred
 import platform
+import keyboard
 
 def flush_input():
     try:
@@ -58,21 +59,32 @@ Hard levels:
 
     print(Fore.BLUE + '''
 Enter 'l' to leave''')
+
+    print(Fore.MAGENTA + '\n\nChoose a level to play: ')
     while True:
-        try:
-            flush_input()
-            print(Fore.MAGENTA + '\n\nChoose a level to play: ')
-            wLevel = input('-> ')
-            if wLevel == 'l':
-                call(['python', 'classicMode.py'])
-                exit()
-            wLevel = int(wLevel)
-            if wLevel > 4 or wLevel < 1:
-                wLevel = int('f')
+        flush_input()
+        if keyboard.is_pressed('1'):
+            wLevel = 1
             break
-        except ValueError:
-            print()
-            print(Fore.RED + 'This level is under development and is coming soon')
+        elif keyboard.is_pressed('2'):
+            wLevel = 2
+            break
+        elif keyboard.is_pressed('3'):
+            wLevel = 3
+            break
+        elif keyboard.is_pressed('4'):
+            wLevel = 4
+            break
+       # elif keyboard.is_pressed('5'):
+       #     wLevel = 5
+       #     break
+       # elif keyboard.is_pressed('6'):
+       #     wLevel = 6
+       #     break
+        elif keyboard.is_pressed('l'):
+            clear()
+            call(['python', 'classicMode.py'])
+            sys.exit()
 
     clear()
     print(Fore.YELLOW + 'Starting', end='')
@@ -212,7 +224,8 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
             print()
             print(Fore.GREEN + 'Correct answer:',''.join(question))
             flush_input()
-            go = input(Fore.MAGENTA + '\n►')
+            print(Fore.MAGENTA + '\nPress enter to continue:')
+            keyboard.wait('enter')
             call(['python', 'pLevels.py'])
             exit()
 
@@ -223,7 +236,8 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
         print(Fore.GREEN + 'Congrats, you beat this level!\n')
         time.sleep(1)
         flush_input()
-        go = input(Fore.MAGENTA + '\n►')
+        print(Fore.MAGENTA + '\nPress enter to continue:')
+        keyboard.wait('enter')
         
         wordsC[indexR] = '1'
         completion = open('completion.txt','w')

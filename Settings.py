@@ -6,6 +6,7 @@ import os
 import sys
 from subprocess import call
 import platform
+import keyboard
 
 def flush_input():
     try:
@@ -62,22 +63,29 @@ def showSetting():
 while True:
     showSetting()
 
+    print(Fore.MAGENTA + '\nWhat would you like to do: ')
     while True:
-        try:
-            flush_input()
-            print(Fore.MAGENTA + '\nWhat would you like to do: ')
-            setting = int(input(Fore.MAGENTA + '-> '))
-            if setting == 1 or setting == 2 or setting == 3 or setting == 4 or setting == 5: 
-                break
-            elif setting == 6:
-                clear()
-                call(['python', 'classicMode.py'])
-                exit()
-            else:
-                setting = int('f')
-        except ValueError:
-            print(Fore.RED + '''Oops this is not available yet''')
-            setting = 0
+        flush_input()
+        if keyboard.is_pressed('1'):
+            setting = 1
+            break
+        elif keyboard.is_pressed('2'):
+            setting = 2
+            break
+        elif keyboard.is_pressed('3'):
+            setting = 3
+            break
+        elif keyboard.is_pressed('4'):
+            setting = 4
+            break
+        elif keyboard.is_pressed('5'):
+            setting = 5
+            break
+        elif keyboard.is_pressed('6'):
+            clear()
+            call(['python', 'classicMode.py'])
+            sys.exit()
+
          
           
     clear()
@@ -88,18 +96,17 @@ while True:
 2) Memorise: input the word letter at a time to make you think more and so learn more
 
 (Note: For option 2 when multiple words need to be entered the space will be auto-completed)''')
+
+        time.sleep(0.5)
+        print(Fore.MAGENTA + '\nChoose input method: ')
         while True:
-             try:
-                time.sleep(0.5)
-                flush_input()
-                print(Fore.MAGENTA + '\nChoose input method: ')
-                choice = int(input(Fore.MAGENTA + '-> '))
-                if choice > 2 or choice < 1:
-                    choice = int('f')
+            flush_input()
+            if keyboard.is_pressed('1'):
+                choice = 1
                 break
-             except:
-                  print(Fore.RED + '''Oops this is not available
-''')
+            elif keyboard.is_pressed('2'):
+                choice = 2
+                break
 
         if choice == 1:
             inputM.write('1')
@@ -117,18 +124,16 @@ Setting updated''')
 
 Why is this a thing? Well anyWord could potentally contain explicit words''')
 
+        time.sleep(0.5)
+        print(Fore.MAGENTA + '\nChoose an option: ')
         while True:
-             try:
-                time.sleep(0.5)
-                flush_input()
-                print(Fore.MAGENTA + '\nChoose an option: ')
-                choice = int(input('-> '))
-                if choice > 2 or choice < 1:
-                    choice = int('f')
+            flush_input()
+            if keyboard.is_pressed('1'):
+                choice = 1
                 break
-             except:
-                  print(Fore.RED + '''Oops this is not available yet
-''')
+            elif keyboard.is_pressed('2'):
+                choice = 2
+                break
 
         if choice == 1:
             anyWordV.write('1')
@@ -151,18 +156,25 @@ Setting updated''')
 
 Note: This does not affect levels''')
 
+        time.sleep(0.5)
+        print(Fore.MAGENTA + '\nChoose a difficulty: ')
         while True:
-             try:
-                time.sleep(0.5)
-                flush_input()
-                print(Fore.MAGENTA + '\nChoose an overall difficulty: ')
-                choice = int(input('-> '))
-                if choice > 5 or choice < 1:
-                    choice = int('f')
+            flush_input()
+            if keyboard.is_pressed('1'):
+                choice = 1
                 break
-             except:
-                  print(Fore.RED + '''Oops this is not available yet
-''')
+            elif keyboard.is_pressed('2'):
+                choice = 2
+                break
+            elif keyboard.is_pressed('3'):
+                choice = 3
+                break
+            elif keyboard.is_pressed('4'):
+                choice = 4
+                break
+            elif keyboard.is_pressed('5'):
+                choice = 5
+                break
 
         if choice == 1:
             difficultyO.write('1')
@@ -179,25 +191,30 @@ Setting updated''')
         difficultyO.close()
 
     elif setting == 4:
-        print(Fore.MAGENTA + 'Press anything to confrim apart from \'n\' which cancels this:')
-        confrim = input('-> ').lower()
-        clear()
-        if confrim == 'n':
-            ''
-        else:
-            wipe = open('pStats.txt', 'w')
-            wipe.close()
-            wipe = open('cStats.txt', 'w')
-            wipe.close()
-            wipe = open('bStats.txt', 'w')
-            wipe.close()
-            wipe = open('bTotal.txt', 'w')
-            wipe.write('-9999999999999999999')
-            wipe.close()
-            wipe = open('completion.txt', 'w')
-            wipe.write('0\n0\n0\n0\n0\n0') ########################
-            wipe.close()
-            print(Fore.GREEN + 'Successfully wiped all user data!')
+        print(Fore.MAGENTA + 'Press y to confirm or n to cancel')
+        while True:
+            if keyboard.is_pressed('n'):
+                ''
+                break
+            elif keyboard.is_pressed('y'):
+                wipe = open('pStats.txt', 'w')
+                wipe.close()
+                wipe = open('cStats.txt', 'w')
+                wipe.close()
+                wipe = open('bStats.txt', 'w')
+                wipe.close()
+                wipe = open('bTotal.txt', 'w')
+                wipe.write('-9999999999999999999')
+                wipe.close()
+                wipe = open('completion.txt', 'w')
+                wipe.write('0\n0\n0\n0\n0\n0') ########################
+                wipe.close()
+                print(Fore.GREEN + 'Successfully wiped all user data!')
+                time.sleep(1)
+                break
+
+
+        
 
     elif setting == 5:
         inputM = open('inputM.txt', 'w')

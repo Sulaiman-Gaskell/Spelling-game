@@ -6,6 +6,15 @@ import os
 import sys
 from subprocess import call
 import platform
+def flush_input():
+    try:
+        import msvcrt
+        while msvcrt.kbhit():
+            msvcrt.getch()
+    except ImportError:
+        import sys  # for linux/unix
+        import termios
+        termios.tcflush(sys.stdin, termios.TCIOFLUSH)
 
 oS = platform.system()
 if oS == 'Windows':
@@ -15,7 +24,8 @@ else:
 clear()
 time.sleep(0.1)
 
-print(Fore.GREEN + 'Welcome to The Spelling Game! (► = press enter) (-> = input something)')
+flush_input()
+print(Fore.GREEN + 'Welcome to The Spelling Game! (key = (► = press enter))')
 print(Fore.YELLOW + '''-----------------------------------------------------------------------------------------------------------------------
 This is where a word is shown on your screen which then disappears after a few seconds.
 You then have to type that word in afterwards when prompted to.
@@ -60,5 +70,5 @@ Getting even one question wrong results in you having to starts over again!
 print()
 go = input(Fore.GREEN + 'Press enter to leave: ')
 clear()
-call(['python', 'Spelling_Game.py'])
+call(['python', 'classicMode.py'])
 sys.exit()

@@ -2,6 +2,10 @@
  Changelog
 ************
 
+2.1.1:
+	NEW: For most inputs you now no longer need to press enter after choosing an option 
+	     (gameplay is unaffected by this change)
+
 2.1.0:
 	NEW: Basic features have been added to player stats
 	NEW: Change how you input things or press enter
