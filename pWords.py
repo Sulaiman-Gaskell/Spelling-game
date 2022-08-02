@@ -566,6 +566,7 @@ or type 'w' to go back to main screen: ''')
                 elif keyboard.is_pressed('w'):
                     again = 'w'
                     break
+                clear()
 
             if again == 'w':
                 print(Fore.GREEN + 'Stats for this round:\n')
@@ -574,7 +575,8 @@ or type 'w' to go back to main screen: ''')
                 print()
                 print(str((correct / (correct + incorrect)) * 100) + '% Accuracy')
                 flush_input()
-                go = input('\n►')
+                print('\nPress enter to continue:')
+                keyboard.wait('enter')
                 clear()
                 call(['python', 'pWords.py'])
                 sys.exit()
