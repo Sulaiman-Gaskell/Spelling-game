@@ -1,3 +1,4 @@
 Use pip command to install the following libaries:
 colorama
 inputTimeout
+keyboard
