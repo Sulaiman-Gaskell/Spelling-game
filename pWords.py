@@ -54,7 +54,7 @@ reduction = 10
 points = 0
 correct = 0
 incorrect = 0
-again = ''
+again = ' '
 total = 0
 
 def beta():
@@ -415,7 +415,7 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
                     difficulty.write('3')
                     difficulty.close()
 
-        cDefault(difficulty)
+        
 
         if difficulty == '1':
             cDefault(difficulty)
@@ -442,7 +442,7 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
         time.sleep(0.3)
 
 
-        while again == '':
+        while again == ' ':
             print(Fore.CYAN + '')
             clear()
             flag = False
@@ -489,7 +489,7 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
 
                 ## for input1
             if inputM == '1':
-                print(difficulty)
+                
                 print(Fore.GREEN + 'You currently have', points, 'points')
                 print(Fore.MAGENTA + '')
                 flush_input()
@@ -556,19 +556,16 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
                 print()
                 print(Fore.GREEN + 'Correct answer:',''.join(question))
 
-            while True:
-                try:
-                    flush_input()
-                    print(Fore.YELLOW + '''\n\nPress space to play again,
+            print(Fore.YELLOW + '''\n\nPress space to play again,
 or type 'w' to go back to main screen: ''')
-                    again = input('\n-> ').lower()
-                    if again == '' or again == 'w':
-                        break
-                    else:
-                        again = int('f')
-                except:
-                    print(Fore.RED + 'Invalid')
-            clear()
+            while True:
+                flush_input()
+                if keyboard.is_pressed(' '):
+                    again = ' '
+                    break
+                elif keyboard.is_pressed('w'):
+                    again = 'w'
+                    break
 
             if again == 'w':
                 print(Fore.GREEN + 'Stats for this round:\n')
