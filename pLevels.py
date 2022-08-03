@@ -75,9 +75,9 @@ Enter 'l' to leave''')
         elif keyboard.is_pressed('4'):
             wLevel = 4
             break
-       # elif keyboard.is_pressed('5'):
-       #     wLevel = 5
-       #     break
+        elif keyboard.is_pressed('5'):
+            wLevel = 5
+            break
        # elif keyboard.is_pressed('6'):
        #     wLevel = 6
        #     break
@@ -115,10 +115,10 @@ _Bonnethead Shark_Bottlenose Dolphin_Dugong_Dumbo Octopus_Giant Isopod_Granrojo 
 _Great Auk_Lanternshark_Leafy Sea Dragon_Leopard Shark_Lizardfish_Megalodon_Megamouth Shark
 _Mimic Octopus_Needlefish'''.split('_')
         bTLength = 0.6
-        answerTimeout = 2
+        answerTimeout = 4
         indexR = 2
         tWords = '20'
-        inputM = 1
+        inputM = '1'
 
     elif wLevel == 4: ## Food
         words = '''Pumpkin Pie_Chicken Pot Pie_Alfredo Sauce_Ice Cream Cake_Cheesecake
@@ -130,7 +130,17 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
         answerTimeout = 3
         indexR = 3
         tWords = '27'
-        inputM = 2
+        inputM = '2'
+
+    elif wLevel == 5: ##Geology
+        words = '''aftershock aluminum aquifer bedrock bulge caldera cataclysm decomposition deposit
+depression disintegration igneous limestone lithosphere magma magnitude metamorphic sedimentary seismology
+stratigraphy'''.split()
+        bTLength = 0
+        answerTimeout = 2.5
+        indexR = 4
+        tWords = '20'
+        inputM = '1'
     
 
     ###
@@ -161,7 +171,8 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
             flush_input()
             while True:
                 try:
-                    print('Spell the word: ')
+                    print(Fore.GREEN + 'Spell the word: ---------------------', Fore.CYAN + str(int(answerTimeout)) \
+,Fore.GREEN + 'seconds (1sf) to answer!')
                     answer = inputimeout(prompt = '\n-> ', timeout = answerTimeout + (len(question) / 6)).lower()
                     break
                 except TimeoutOccurred:
@@ -188,7 +199,8 @@ _Cantalope_Fried Zucchini_Calzone'''.split('_')
                             print(Fore.MAGENTA + '')
                             clear()
                             print(''.join(answer))
-                            print('Spell the word, letter at a time:')
+                            print(Fore.GREEN + 'Spell the word, letter at a time: --------', Fore.CYAN + str(int(answerTimeout)) \
+,Fore.GREEN + 'seconds (1sf) to answer!')
                             flush_input()
                             aLetter = inputimeout(prompt = '\n-> ', timeout = answerTimeout).lower()
                             for l in aLetter:
