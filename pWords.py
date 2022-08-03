@@ -490,7 +490,8 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
                 ## for input1
             if inputM == '1':
                 
-                print(Fore.GREEN + 'You currently have', points, 'points')
+                print(Fore.GREEN + 'You currently have', points, 'points -----', int(answeTimeout) \
+,'seconds (1sf) to answer!')
                 print(Fore.MAGENTA + '')
                 flush_input()
                 while True:
@@ -513,12 +514,13 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
                             try:
                                 clear()
                                 lLetter = []
-                                print(Fore.GREEN + 'You currently have', points, 'points')
+                                print(Fore.GREEN + 'You currently have', points, 'points -----', int(answeTimeout / 2) \
+,'seconds (1sf) to answer!')
                                 print(Fore.MAGENTA + '')
                                 print(''.join(answer))
                                 print('Spell the word, letter at a time:')
                                 flush_input()
-                                aLetter = inputimeout(prompt = '\n-> ', timeout = answeTimeout).lower()
+                                aLetter = inputimeout(prompt = '\n-> ', timeout = answeTimeout / 2).lower()
                                 for l in aLetter:
                                     lLetter.append(l)
                                 if len(lLetter) == 1:
@@ -566,7 +568,7 @@ or type 'w' to go back to main screen: ''')
                 elif keyboard.is_pressed('w'):
                     again = 'w'
                     break
-                clear()
+            clear()
 
             if again == 'w':
                 print(Fore.GREEN + 'Stats for this round:\n')

@@ -2,6 +2,16 @@
  Changelog
 ************
 
+2.1.2:
+	NEW: Geology level is now out!
+	NEW: A timer is now displayed per question to show how long you have to answer
+	NEW: For classic mode only gain extra points based on how quickly you answer a question
+	Other changes:
+		You can now go back in certain places
+	Bug fixes:
+		wrong input method being used for level in medium difficulty
+		Message after answering a question not showing up in pWords
+
 2.1.1:
 	NEW: For most inputs you now no longer need to press enter after choosing an option 
 	     (gameplay is unaffected by this change)

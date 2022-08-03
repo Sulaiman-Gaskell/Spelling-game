@@ -26,6 +26,7 @@ def flush_input():
 
 
 
+
 inputM = open('inputM.txt', 'r')
 inputM = inputM.read()
 
@@ -69,6 +70,8 @@ else:
 
 again = 'w'
 clear()
+
+
 
 def banner():
     print(Fore.YELLOW + Style.DIM + '''*****************************************
@@ -133,6 +136,7 @@ elif option == 3:
 2) View game changelog
 3) View howToPlay
 ''')
+    print(Fore.BLUE + '\nPress l to return to main menu')
     print(Fore.MAGENTA + '\nEnter the number of what you would like to do:')
 
 
@@ -146,6 +150,10 @@ elif option == 3:
             break
         elif keyboard.read_key() == '3':
             call(['python','howToPlay.py'])
+            sys.exit()
+        elif keyboard.is_pressed('l'):
+            clear()
+            call(['python', 'classicMode.py'])
             sys.exit()
 
             
@@ -186,7 +194,7 @@ elif option == 1:
     print(Fore.CYAN + '3) Play levels',Fore.RED + '----------------------- \
 #Unofficial; multi-word questions which tests your memory and wps')
     time.sleep(0.2)
-    print()
+    print(Fore.BLUE + '\nPress l to return to main menu')
 
     print(Fore.MAGENTA + '\nEnter the number of what you would like to do:')
     while True:
@@ -200,6 +208,12 @@ elif option == 1:
         elif keyboard.is_pressed('3'):
             option = 3
             break
+        elif keyboard.is_pressed('l'):
+            clear()
+            call(['python', 'classicMode.py'])
+            sys.exit()
+            
+            
 
     if option == 2:
         call(['python', 'pWords.py'])
@@ -339,13 +353,17 @@ column evaluation lovely concentration evidence marriage material potential sinc
 
         ## for input1
         if inputM == '1':
-            print(Fore.GREEN + 'You currently have', points, 'points')
+            start = time.time()
+            print(Fore.GREEN + 'You currently have', points, 'points -----', int(answeTimeout) + round(int(len(question) / 4.75)) \
+,'seconds (1sf) to answer!')
             print(Fore.MAGENTA + '')
             flush_input()
             while True:
                 try:
                     print('Spell the word:')
                     answer = inputimeout(prompt = '\n-> ', timeout = answeTimeout + (len(question) / 4.75)).lower()
+                    end = time.time()
+                    timeTaken = end - start
                     break
                 except TimeoutOccurred:
                     answer = 'Oops you timed out! (Review your settings to change the timeout length)!'
@@ -354,6 +372,7 @@ column evaluation lovely concentration evidence marriage material potential sinc
         else:
              answer = []
              flag = False
+             start = time.time()
              for letter in questionV:
                 lLetter = []
          ##for input 2
@@ -362,12 +381,13 @@ column evaluation lovely concentration evidence marriage material potential sinc
                         try:
                             clear()
                             lLetter = []
-                            print(Fore.GREEN + 'You currently have', points, 'points')
+                            print(Fore.GREEN + 'You currently have', points, 'points -----', int(answeTimeout / 2) \
+,'seconds (1sf) to enter a letter!')
                             print(Fore.MAGENTA + '')
                             print(''.join(answer))
                             print('Spell the word, letter at a time:')
                             flush_input()
-                            aLetter = inputimeout(prompt = '\n-> ', timeout = answeTimeout).lower()
+                            aLetter = inputimeout(prompt = '\n-> ', timeout = (answeTimeout / 2)).lower()
                             for l in aLetter:
                                 lLetter.append(l)
                             if len(lLetter) == 1:
@@ -384,7 +404,8 @@ column evaluation lovely concentration evidence marriage material potential sinc
                         except:
                             print(Fore.RED + 'Invalid, try again')
                             time.sleep(0.9)
-
+             end = time.time()
+             timeTaken = end - start
 
         clear()
         print(questionV)
@@ -393,9 +414,9 @@ column evaluation lovely concentration evidence marriage material potential sinc
         if answer == question or answer == questionV:
             print(Fore.GREEN + 'Correct!')
             correct += 1
-            points += gain
+            points += int((gain + ((timeTaken / answeTimeout) * 100)) / 3)
             print()
-            print('+',gain,'points!')
+            print('+',(gain + int(((timeTaken / answeTimeout) * 100))) / 3,'points!')
         else:
             clear()
             print(Fore.RED +  'Incorrect')
