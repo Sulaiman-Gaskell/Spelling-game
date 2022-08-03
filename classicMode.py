@@ -75,7 +75,7 @@ clear()
 
 def banner():
     print(Fore.YELLOW + Style.DIM + '''*****************************************
-Current --> 2.1.1 │ Last_Major --> 2.1.0 
+Current --> 2.1.2 │ Last_Major --> 2.1.0 
 *****************************************
 ''')
 
