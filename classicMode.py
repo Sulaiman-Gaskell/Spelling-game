@@ -12,7 +12,6 @@ from subprocess import call
 from inputimeout import TimeoutOccurred, inputimeout
 import keyboard
 
-
 def flush_input():
     try:
         import msvcrt
@@ -73,38 +72,49 @@ clear()
 
 
 
-def banner():
-    print(Fore.YELLOW + Style.DIM + '''*****************************************
-Current --> 2.1.2 │ Last_Major --> 2.1.0 
+
+def startUp_menu():
+
+    bannerTxt = '''*****************************************
+Current --> 2.1.3 │ Last_Major --> 2.1.0 
 *****************************************
-''')
+'''
+    print(Fore.YELLOW + bannerTxt)
 
-def beta():
-    print(Fore.RED + '''This is currently under development
-therefore some features may not work correctly\n''')
+    welm =  'Welcome to the spelling game!'
+    for l in welm:
+        sys.stdout.write(Fore.BLUE + Style.NORMAL + l)
+        sys.stdout.flush()
+        time.sleep(0.0000000000000000001)
+
+    print()
+    txt = '''
+Don't forget to read the howToPlay and review your settings!'''
+    for l in txt:
+        sys.stdout.write(Fore.GREEN + l)
+        sys.stdout.flush()
+        time.sleep(0.000000000000000000000001)
 
 
-banner()
-
-
-def welcomeMsg():
-    print(Fore.BLUE + Style.NORMAL + 'Welcome to the spelling game!')
-    time.sleep(0.1)
-    print(Fore.GREEN + '''
-Don't forget to read the howToPlay and review your settings!''')
-
-welcomeMsg()
-
+startUp_menu()
 time.sleep(0.1)
 print('\n')
-print(Fore.CYAN + '''1) Play
-2) Go to settings
-3) View game related information
-4) Exit game
-''')
+print(Fore.CYAN + '1) Play')
+time.sleep(0.2)
+print('2) Go to settings')
+time.sleep(0.2)
+print('3) View game related information')
+time.sleep(0.2)
+print('4) Exit game')
+time.sleep(0.2)
+
+
+
 
 
 print(Fore.MAGENTA + '\nEnter the number of what you would like to do:')
+
+
 while True:
     flush_input()
     if keyboard.is_pressed('1'):
@@ -135,6 +145,7 @@ elif option == 3:
     print(Fore.CYAN + '''1) View user info
 2) View game changelog
 3) View howToPlay
+4) View the point formula (Coming soon)
 ''')
     print(Fore.BLUE + '\nPress l to return to main menu')
     print(Fore.MAGENTA + '\nEnter the number of what you would like to do:')
@@ -155,7 +166,6 @@ elif option == 3:
             clear()
             call(['python', 'classicMode.py'])
             sys.exit()
-
             
     if option == 1:
         call(['python', 'pData.py'])
@@ -317,28 +327,28 @@ column evaluation lovely concentration evidence marriage material potential sinc
             gain = 5 + eGain
             if gain == 0:
                 gain = 2
-            reduction = 15
+            reduction = 50
         elif difficulty == 2:
             medium += 1
             randomizer = random.randint(0, len(mediumL) - 1)
             tLength = 0.4
             questionV = mediumL[randomizer].lower()
             gain = 10 + eGain
-            reduction = 10
+            reduction = 50
         elif difficulty == 3:
             hard += 1
             lines = open('hardWords.txt').read().splitlines()
             tLength = 0.2
             questionV = random.choice(lines)
             gain = 15 + eGain
-            reduction = 5
+            reduction = 50
         else:
             anyW += 1
             lines = open('anyWord.txt').read().splitlines()
             tLength = 0.4
             questionV = random.choice(lines)
             gain = 10 + eGain
-            reduction = 10
+            reduction = 50
         
         question = []
         for letter in questionV:
@@ -354,14 +364,14 @@ column evaluation lovely concentration evidence marriage material potential sinc
         ## for input1
         if inputM == '1':
             start = time.time()
-            print(Fore.GREEN + 'You currently have', points, 'points -----', int(answeTimeout) + round(int(len(question) / 4.75)) \
-,'seconds (1sf) to answer!')
+            print(Fore.GREEN + 'You currently have', points, 'points -----'\
+,Fore.CYAN + str(int(answeTimeout) + round(int(len(question) / 4.75))) ,Fore.GREEN + 'seconds (1sf) to answer!')
             print(Fore.MAGENTA + '')
             flush_input()
             while True:
                 try:
-                    print('Spell the word:')
-                    answer = inputimeout(prompt = '\n-> ', timeout = answeTimeout + (len(question) / 4.75)).lower()
+                    print('Spell the word:\n')
+                    answer = inputimeout(prompt = '-> ', timeout = answeTimeout + (len(question) / 4.75)).lower()
                     end = time.time()
                     timeTaken = end - start
                     break
@@ -369,7 +379,7 @@ column evaluation lovely concentration evidence marriage material potential sinc
                     answer = 'Oops you timed out! (Review your settings to change the timeout length)!'
                     break
 
-        else:
+        elif inputM == '2':
              answer = []
              flag = False
              start = time.time()
@@ -381,13 +391,13 @@ column evaluation lovely concentration evidence marriage material potential sinc
                         try:
                             clear()
                             lLetter = []
-                            print(Fore.GREEN + 'You currently have', points, 'points -----', int(answeTimeout / 2) \
-,'seconds (1sf) to enter a letter!')
+                            print(Fore.GREEN + 'You currently have', points, 'points -----',Fore.CYAN + str(int(answeTimeout / 2)) \
+,Fore.CYAN + 'seconds (1sf) to enter a letter!')
                             print(Fore.MAGENTA + '')
                             print(''.join(answer))
-                            print('Spell the word, letter at a time:')
+                            print('Spell the word, letter at a time:\n')
                             flush_input()
-                            aLetter = inputimeout(prompt = '\n-> ', timeout = (answeTimeout / 2)).lower()
+                            aLetter = inputimeout(prompt = '-> ', timeout = (answeTimeout / 2)).lower()
                             for l in aLetter:
                                 lLetter.append(l)
                             if len(lLetter) == 1:
@@ -406,6 +416,22 @@ column evaluation lovely concentration evidence marriage material potential sinc
                             time.sleep(0.9)
              end = time.time()
              timeTaken = end - start
+        
+        else:
+            start = time.time()
+            answer = []
+            for letter in questionV:
+                print(Fore.GREEN + 'You currently have', points, 'points')
+
+                print(Fore.MAGENTA + '')
+                print(''.join(answer))
+                print('Spell the word:')
+                keyboard.wait(letter)
+                answer.append(letter)
+                clear()
+            end = time.time()
+            timeTaken = end - start
+
 
         clear()
         print(questionV)
@@ -414,9 +440,9 @@ column evaluation lovely concentration evidence marriage material potential sinc
         if answer == question or answer == questionV:
             print(Fore.GREEN + 'Correct!')
             correct += 1
-            points += int((gain + ((timeTaken / answeTimeout) * 100)) / 3)
+            points += int(gain + int((answeTimeout / timeTaken) * 100) / 4)
             print()
-            print('+',(gain + int(((timeTaken / answeTimeout) * 100))) / 3,'points!')
+            print('+',int(gain + int((answeTimeout / timeTaken) * 100) / 4),'points!')
         else:
             clear()
             print(Fore.RED +  'Incorrect')
@@ -431,8 +457,8 @@ column evaluation lovely concentration evidence marriage material potential sinc
             
         flush_input()
         print(Fore.BLUE + '''\n\nPress space to play again,
-or press 'w' to change difficulty,
-or press 'e' to receive stats: ''')
+or press '1' to change difficulty,
+or press '2' to receive stats and end: ''')
 
         
         while True:
@@ -440,10 +466,10 @@ or press 'e' to receive stats: ''')
             if keyboard.is_pressed(' '):
                 again = ''
                 break
-            elif keyboard.is_pressed('w'):
+            elif keyboard.is_pressed('1'):
                 again = 'w'
                 break
-            elif keyboard.is_pressed('e'):
+            elif keyboard.is_pressed('2'):
                 again = 'end'
                 break
         clear()
@@ -453,6 +479,9 @@ or press 'e' to receive stats: ''')
 
 
 
+if inputM == '3':
+    call(['python', 'classicMode.py'])
+    exit()
 
 print(Fore.GREEN + 'You ended up with', points,'points by the end of this session!')
 print('Stats for this session:')
@@ -494,7 +523,9 @@ cStats.close()
 pStats.close()
 
 flush_input()
-go = input(Fore.GREEN + '►')
+print(Fore.GREEN + 'Press enter to continue:')
+keyboard.wait()
+
 clear()
 bStats = open('bStats.txt', 'r')
 print(Fore.GREEN + 'best ever stats in one session: ')
@@ -518,7 +549,8 @@ else:
     print(Fore.GREEN + 'Best stats are unchanged')
 
 flush_input()
-go = input('\n► ')
+print(Fore.GREEN + 'Press enter to continue:')
+keyboard.wait()
 clear()
 call(['python', 'classicMode.py'])
 sys.exit()

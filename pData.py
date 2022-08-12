@@ -27,7 +27,7 @@ else:
 while True:
     clear()
     print(Fore.CYAN + '''1) View Classic Mode stats
-2) View permanent stats (Coming soon)
+2) View permanent stats (Not coming soon)
 
 press 'l' to leave
     ''')

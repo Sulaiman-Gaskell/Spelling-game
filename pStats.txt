@@ -1,13 +1,13 @@
-Total points accumulated: 166
-Total number of questions answered: 19
+Total points accumulated: 99
+Total number of questions answered: 1
 
 Input method used: Natural
 
-63% accuracy
+100% accuracy
 
 Number of quesions answered for each difficulty:
 
-Easy: 19
+Easy: 1
 Medium: 0
 Hard: 0
 AnyWord: 0
