@@ -30,6 +30,14 @@ questionV = '\n'
 inputM = open('inputM.txt', 'r')
 inputM = inputM.read()
 
+if inputM == '3':
+    clear()
+    print(Fore.RED + 'You have the Practice input method selected')
+    print('Please change to one of the other input methods to play this gamemode')
+    time.sleep(6)
+    call(['python', 'classicMode.py'])
+    exit()
+
 difficultyO = open('difficultyO.txt', 'r')
 difficultyO = difficultyO.read()
 if difficultyO == '1':
@@ -490,13 +498,13 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
                 ## for input1
             if inputM == '1':
                 
-                print(Fore.GREEN + 'You currently have', points, 'points -----', int(answeTimeout) \
-,'seconds (1sf) to answer!')
+                print(Fore.GREEN + 'You currently have', points, 'points -----',Fore.CYAN + str(int(answeTimeout)) \
+,Fore.GREEN + 'seconds (1sf) to answer!')
                 print(Fore.MAGENTA + '')
                 flush_input()
                 while True:
                     try:
-                        print('Spell the word:')
+                        print('Spell the word:\n')
                         answer = inputimeout(prompt = '-> ', timeout = answeTimeout).lower()
                         break
                     except TimeoutOccurred:
@@ -514,13 +522,13 @@ on default which is currently set to:',Fore.CYAN + dDifficulty)
                             try:
                                 clear()
                                 lLetter = []
-                                print(Fore.GREEN + 'You currently have', points, 'points -----', int(answeTimeout / 2) \
-,'seconds (1sf) to answer!')
+                                print(Fore.GREEN + 'You currently have', points, 'points -----',Fore.CYAN + str(int(answeTimeout / 2)) \
+,Fore.GREEN + 'seconds (1sf) to answer!')
                                 print(Fore.MAGENTA + '')
                                 print(''.join(answer))
-                                print('Spell the word, letter at a time:')
+                                print('Spell the word, letter at a time:\n')
                                 flush_input()
-                                aLetter = inputimeout(prompt = '\n-> ', timeout = answeTimeout / 2).lower()
+                                aLetter = inputimeout(prompt = '-> ', timeout = answeTimeout / 2).lower()
                                 for l in aLetter:
                                     lLetter.append(l)
                                 if len(lLetter) == 1:

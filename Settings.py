@@ -34,6 +34,12 @@ leave = 'n'
 def showSetting():
     inputM = open('inputM.txt', 'r')
     inputM = inputM.read()
+    if inputM == '1':
+        inputM = 'Natural'
+    elif inputM == '2':
+        inputM == 'Memorise'
+    else:
+        inputM = 'Practice'
 
     anyWordV = open('anyWordV.txt', 'r')
     anyWordV = anyWordV.read()
@@ -51,13 +57,19 @@ def showSetting():
     else:
         difficultyO = 'Too far!'
 
-    print(Fore.CYAN + '1) Toggle input method:',Fore.YELLOW + ('Natural' if inputM == '1' else 'Memorise') + ' mode is selected')
+    print(Fore.CYAN + '1) Toggle input method:',Fore.YELLOW + inputM + ' mode is selected')
+    time.sleep(0.1)
     print(Fore.CYAN + '2) Toggle anyWord',Fore.YELLOW + ('Enabled' if anyWordV == '1' else 'Disabled' ))
+    time.sleep(0.1)
     print(Fore.CYAN + '3) Toggle overall difficulty',Fore.YELLOW + difficultyO, 'difficulty is selected' )
+    time.sleep(0.1)
     print(Fore.CYAN + '4) Initialise user data')
+    time.sleep(0.1)
     print(Fore.CYAN + '5) Reset settings to default')
+    time.sleep(0.1)
     print()
     print(Fore.BLUE + '6) Leave settings')
+    time.sleep(0.2)
 
 
 while True:
@@ -95,7 +107,10 @@ while True:
 
 2) Memorise: input the word letter at a time to make you think more and so learn more
 
-(Note: For option 2 when multiple words need to be entered the space will be auto-completed)''')
+3) Practice: You can only enter the correct letters with no time limit but you can't record your stats
+
+(Note: For option 2 when multiple words need to be entered the space will be auto-completed.
+Option 3 is only for classic mode.''')
 
         time.sleep(0.5)
         print(Fore.MAGENTA + '\nChoose input method: ')
@@ -106,6 +121,10 @@ while True:
                 break
             elif keyboard.is_pressed('2'):
                 choice = 2
+                break
+            elif keyboard.is_pressed('3'):
+                inputM.write('3')
+                choice = 0
                 break
 
         if choice == 1:

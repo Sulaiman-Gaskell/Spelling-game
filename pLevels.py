@@ -26,6 +26,13 @@ else:
 
 inputM = open('inputM.txt', 'r')
 inputM = inputM.read()
+if inputM == '3':
+    clear()
+    print(Fore.RED + 'You have the Practice input method selected')
+    print('Please change to one of the other input methods to play this gamemode')
+    time.sleep(6)
+    call(['python', 'classicMode.py'])
+    exit()
 
 wordsC = open('completion.txt').read().splitlines()
 
@@ -172,8 +179,8 @@ stratigraphy'''.split()
             while True:
                 try:
                     print(Fore.GREEN + 'Spell the word: ---------------------', Fore.CYAN + str(int(answerTimeout)) \
-,Fore.GREEN + 'seconds (1sf) to answer!')
-                    answer = inputimeout(prompt = '\n-> ', timeout = answerTimeout + (len(question) / 6)).lower()
+,Fore.GREEN + 'seconds (1sf) to answer!\n')
+                    answer = inputimeout(prompt = '-> ', timeout = answerTimeout + (len(question) / 6)).lower()
                     break
                 except TimeoutOccurred:
                     answer = 'Oops you timed out! Maybe try an easier level first.'
@@ -200,9 +207,9 @@ stratigraphy'''.split()
                             clear()
                             print(''.join(answer))
                             print(Fore.GREEN + 'Spell the word, letter at a time: --------', Fore.CYAN + str(int(answerTimeout)) \
-,Fore.GREEN + 'seconds (1sf) to answer!')
+,Fore.GREEN + 'seconds (1sf) to answer!\n')
                             flush_input()
-                            aLetter = inputimeout(prompt = '\n-> ', timeout = answerTimeout).lower()
+                            aLetter = inputimeout(prompt = '-> ', timeout = answerTimeout).lower()
                             for l in aLetter:
                                 lLetter.append(l)
                             if len(lLetter) == 1:
