@@ -2,6 +2,17 @@
  Changelog
 ************
 
+2.1.3:
+	NEW: input method; Practice
+	Other changes:
+		Better startUp menu
+	Balance changes:
+		For classsic mode: points lost for all difficulties is now 50
+	Bug fixes:
+		Gettting more points the longer you take
+		Points being showing using float not int
+		
+
 2.1.2:
 	NEW: Geology level is now out!
 	NEW: A timer is now displayed per question to show how long you have to answer
