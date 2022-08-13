@@ -511,8 +511,11 @@ cStats.close()
 #prev stats
 
 pStats = open('pStats.txt', 'r')
+time.sleep(0.2)
 print('----------------------------------------------------')
+time.sleep(0.2)
 print(Fore.GREEN + '\nPrevious session stats: ')
+time.sleep(0.2)
 print(Fore.CYAN + '')
 print(pStats.read())
 pStats.close()
@@ -523,10 +526,12 @@ cStats.close()
 pStats.close()
 
 flush_input()
+time.sleep(0.2)
 print(Fore.GREEN + 'Press enter to continue:')
 keyboard.wait()
 
 clear()
+time.sleep(0.2)
 bStats = open('bStats.txt', 'r')
 print(Fore.GREEN + 'best ever stats in one session: ')
 print(Fore.MAGENTA + '')
@@ -550,7 +555,7 @@ else:
 
 flush_input()
 print(Fore.GREEN + 'Press enter to continue:')
-keyboard.wait()
+keyboard.wait('enter')
 clear()
 call(['python', 'classicMode.py'])
 sys.exit()

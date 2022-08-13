@@ -1,3 +1,4 @@
+from multiprocessing.connection import answer_challenge
 import time
 import random
 from colorama import Fore,Back,Style,init
@@ -33,6 +34,10 @@ if inputM == '3':
     time.sleep(6)
     call(['python', 'classicMode.py'])
     exit()
+elif inputM == '2':
+    inputM = 'Memorise'
+elif inputM == '1':
+    inputM = 'Natural'
 
 wordsC = open('completion.txt').read().splitlines()
 
@@ -44,22 +49,28 @@ print(Fore.RED + 'Please make sure that you have read howToPlay and reviewed you
 
 while True:
     print(Fore.GREEN + '''Easy levels:
-¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
-    print('1) Wild animals' , Fore.GREEN + ' -completed!' if wordsC[0] == '1' else Fore.RED + ' -incomplete') 
-    print(Fore.GREEN + '2) Electronics' , Fore.GREEN + '  -completed!' if wordsC[1] == '1' else Fore.RED + '  -incomplete')
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
+    print('1) Wild animals' , Fore.GREEN + ' -completed!' if wordsC[0] == '1' else Fore.RED + ' -incomplete'\
+, Fore.BLUE + ' ---------> Input method used:', inputM)  
+    print(Fore.GREEN + '2) Electronics' , Fore.GREEN + '  -completed!' if wordsC[1] == '1' else Fore.RED + '  -incomplete'\
+, Fore.BLUE + ' ---------> Input method used:', inputM) 
     time.sleep(0.1)
     print(Fore.YELLOW + '''\n
 Medium levels:
-¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
-    print('3) Oceanic creatures' , Fore.GREEN + ' -completed!' if wordsC[2] == '1' else Fore.RED + ' -incomplete')
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
+    print('3) Oceanic creatures' , Fore.GREEN + ' -completed!' if wordsC[2] == '1' else Fore.RED + ' -incomplete'\
+, Fore.BLUE + ' ---------> Input method used: Natural') 
     print(Fore.YELLOW + '4) Food' , Fore.GREEN + '              -completed!' if wordsC[3] == '1' else\
-         Fore.RED + '              -incomplete')
+         Fore.RED + '              -incomplete'\
+, Fore.BLUE + ' ---------> Input method used: Memorise') 
     time.sleep(0.1)
     print(Fore.RED + '''\n
 Hard levels:
-¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
-    print('5) Geology' , Fore.GREEN + '        -completed!' if wordsC[4] == '1' else Fore.RED + '        -incomplete')
-    print(Fore.RED + '6) The Atmosphere' , Fore.GREEN + ' -completed!' if wordsC[5] == '1' else Fore.RED + ' -incomplete')
+¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬¬''')
+    print('5) Geology' , Fore.GREEN + '        -completed!' if wordsC[4] == '1' else Fore.RED + '        -incomplete'\
+, Fore.BLUE + ' ---------> Input method used: Natural') 
+    print(Fore.RED + '6) The Atmosphere' , Fore.GREEN + ' -completed!' if wordsC[5] == '1' else Fore.RED + ' -incomplete'\
+, Fore.BLUE + ' ---------> Input method used: Memorise') 
 
     print(Fore.CYAN + '\nNote: Sets above easy may contain more than one word per question')
     time.sleep(0.1)
@@ -85,9 +96,9 @@ Enter 'l' to leave''')
         elif keyboard.is_pressed('5'):
             wLevel = 5
             break
-       # elif keyboard.is_pressed('6'):
-       #     wLevel = 6
-       #     break
+        elif keyboard.is_pressed('6'):
+            wLevel = 6
+            break
         elif keyboard.is_pressed('l'):
             clear()
             call(['python', 'classicMode.py'])
@@ -148,6 +159,17 @@ stratigraphy'''.split()
         indexR = 4
         tWords = '20'
         inputM = '1'
+    
+    elif wLevel == 6:
+        words = '''atmosphere_climate_exosphere_ionosphere_jet stream_mesosphere_ozone_polar zone_stratosphere
+thermosphere_tropical zone_troposphere_weather_air mass_barometer_cold front_conduction_convection_occluded front
+radiation_warm front_anemometer_doldrums_horse latitude_sea breeze_wind vane_anticyclone_blizzard_cirrus_cloud
+cumulonimbus_cumulus_precipitation_saturated'''.split('_')
+        bTLength = 0
+        answerTimeout = 1
+        indexR = 5
+        tWords = '31'
+        inputM = '2'
     
 
     ###

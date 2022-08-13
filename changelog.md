@@ -2,6 +2,14 @@
  Changelog
 ************
 
+2.1.4:
+	NEW: Final level is now out!
+	Visual changes:
+		Input method is now displayed for each level
+	Bug fixes:
+		Timings not working for classicMode stats
+		Can't leave stat page after ending a classicMode game
+
 2.1.3:
 	NEW: input method; Practice
 	Other changes:
