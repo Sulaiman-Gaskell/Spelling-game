@@ -1,4 +1,3 @@
-Use pip command to install the following libaries:
-colorama
-inputTimeout
-keyboard
+colorama==0.4.4
+inputimeout>=1.0.4
+keyboard==0.13.5
