@@ -37,7 +37,7 @@ def showSetting():
     if inputM == '1':
         inputM = 'Natural'
     elif inputM == '2':
-        inputM == 'Memorise'
+        inputM = 'Memorise'
     else:
         inputM = 'Practice'
 
@@ -129,7 +129,7 @@ Option 3 is only for classic mode.''')
 
         if choice == 1:
             inputM.write('1')
-        else:
+        elif choice == 2:
             inputM.write('2')
         print('''
 Setting updated''')
@@ -217,10 +217,12 @@ Setting updated''')
                 break
             elif keyboard.is_pressed('y'):
                 wipe = open('pStats.txt', 'w')
+                wipe.write('Play a game to record stats!\n')
                 wipe.close()
                 wipe = open('cStats.txt', 'w')
                 wipe.close()
                 wipe = open('bStats.txt', 'w')
+                wipe.write('Play a game to record stats!\n')
                 wipe.close()
                 wipe = open('bTotal.txt', 'w')
                 wipe.write('-9999999999999999999')
@@ -229,8 +231,12 @@ Setting updated''')
                 wipe.write('0\n0\n0\n0\n0\n0') ########################
                 wipe.close()
                 print(Fore.GREEN + 'Successfully wiped all user data!')
-                time.sleep(1)
-                break
+                time.sleep(0.3)
+                print('\nRestarting game...')
+                time.sleep(1.3)
+                clear()
+                call(['python', 'startUp.py'])
+                sys.exit()
 
 
         

@@ -76,7 +76,7 @@ clear()
 def startUp_menu():
 
     bannerTxt = '''*****************************************
-Current --> 2.1.3 │ Last_Major --> 2.1.0 
+Current --> 2.1.4 │ Last_Major --> 2.1.0 
 *****************************************
 '''
     print(Fore.YELLOW + bannerTxt)
@@ -91,9 +91,8 @@ Current --> 2.1.3 │ Last_Major --> 2.1.0
     txt = '''
 Don't forget to read the howToPlay and review your settings!'''
     for l in txt:
-        sys.stdout.write(Fore.GREEN + l)
-        sys.stdout.flush()
-        time.sleep(0.000000000000000000000001)
+        print(Fore.GREEN + l, end='')
+        time.sleep(0.000000000000000001)
 
 
 startUp_menu()
@@ -496,6 +495,12 @@ if inputM == '1':
     cInput = 'Input method used: Natural'
 elif inputM == '2':
     cInput = 'Input method used: Memorise'
+    
+elif inputM == '3':
+    clear()
+    call(['python', 'classicMode.py'])
+    sys.exit()
+
 rLines = ['Total points accumulated: '+ str(points),'Total number of questions answered: ' + total, '', cInput, '', str(perc)\
 + '% accuracy',  '', 'Number of quesions answered for each difficulty:','',  'Easy: ' + str(easy),'Medium: '\
 + str(medium),'Hard: ' + str(hard),'AnyWord: ' + str(anyW)]
