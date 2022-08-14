@@ -2,6 +2,12 @@
  Changelog
 ************
 
+2.1.5:
+	Bug fixes:
+		Game crashing when trying to recieve stats in classicMode when practice inputM is on
+		Settings issue with input methods being displayed	
+		When stats are empty, nothing is displayed
+
 2.1.4:
 	NEW: Final level is now out!
 	Visual changes:
