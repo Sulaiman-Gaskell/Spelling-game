@@ -33,7 +33,8 @@ Gain points by answering correctly and compare your scores to previous sesssions
 go = input(Fore.GREEN + '►')
 print(Fore.BLUE + '''----------------------------------------------------------------------------------------------------------------------- 
 The time at which the word is shown for is based on your SELECTED DIFFICULTY and the LENGTH OF THE WORD given,
-SELECTED DIFFICULTY is chosen when starting a game.''')
+SELECTED DIFFICULTY is chosen when starting a game.
+You can also practice hard difficulty but stats will not be recorded''')
 go = input(Fore.GREEN + '►')
 print(Fore.MAGENTA + '''-----------------------------------------------------------------------------------------------------------------------
 For both types of difficulty, the harder the difficulty selected the more points gained per correct question,

@@ -2,6 +2,17 @@
  Changelog
 ************
 
+
+2.2.0 (Pre):
+	This update prepares the game for the next update:
+	UI changes:
+		Changed game selection menu
+		Added placeholder for new gamemode
+	Other changes:
+		Practice mode is now considered a seperate classic mode
+	Bug fixes:
+		Can't leave stat page after ending classicMode game
+
 2.1.5:
 	Bug fixes:
 		Game crashing when trying to recieve stats in classicMode when practice inputM is on
@@ -14,7 +25,7 @@
 		Input method is now displayed for each level
 	Bug fixes:
 		Timings not working for classicMode stats
-		Can't leave stat page after ending a classicMode game
+		Can't leave stat page after ending a classicMode game / not fixed
 
 2.1.3:
 	NEW: input method; Practice
