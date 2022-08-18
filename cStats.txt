@@ -1,0 +1,13 @@
+Total points accumulated: 31
+Total number of questions answered: 1
+
+Input method used: Natural
+
+100% accuracy
+
+Number of quesions answered for each difficulty:
+
+Easy: 1
+Medium: 0
+Hard: 0
+AnyWord: 0

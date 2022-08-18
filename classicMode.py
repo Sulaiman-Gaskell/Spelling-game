@@ -75,9 +75,9 @@ clear()
 
 def startUp_menu():
 
-    bannerTxt = '''*****************************************
-Current --> 2.1.4 │ Last_Major --> 2.1.0 
-*****************************************
+    bannerTxt = '''***********************************************
+Current --> (Pre)2.2.0 │ Last_Major --> 2.1.0 
+***********************************************
 '''
     print(Fore.YELLOW + bannerTxt)
 
@@ -87,12 +87,11 @@ Current --> 2.1.4 │ Last_Major --> 2.1.0
         sys.stdout.flush()
         time.sleep(0.0000000000000000001)
 
+    time.sleep(0.2)
     print()
     txt = '''
 Don't forget to read the howToPlay and review your settings!'''
-    for l in txt:
-        print(Fore.GREEN + l, end='')
-        time.sleep(0.000000000000000001)
+    print(Fore.GREEN + txt)
 
 
 startUp_menu()
@@ -144,7 +143,7 @@ elif option == 3:
     print(Fore.CYAN + '''1) View user info
 2) View game changelog
 3) View howToPlay
-4) View the point formula (Coming soon)
+4) View the point formula (Not coming soon)
 ''')
     print(Fore.BLUE + '\nPress l to return to main menu')
     print(Fore.MAGENTA + '\nEnter the number of what you would like to do:')
@@ -194,14 +193,14 @@ elif option == 5:
     exit()
 elif option == 1:
     clear()
-    print(Fore.CYAN + '1) Play classic',Fore.RED + '---------------------- #Competitive; with offical scoring')
+    print(Fore.CYAN + '1) Play Classic mode',Fore.RED + '---------------------- # The main gamemode')
     print()
     time.sleep(0.2)
-    print(Fore.CYAN + '2) Play and manage your own sets',Fore.RED + '----- #Non-competitive; but includes different difficulties')
+    print(Fore.CYAN + '2) Play and manage your own sets',Fore.RED + '---------- # Played in the style of Classic mode')
     print()
     time.sleep(0.2)
-    print(Fore.CYAN + '3) Play levels',Fore.RED + '----------------------- \
-#Unofficial; multi-word questions which tests your memory and wps')
+    print(Fore.CYAN + '3) Other gamemodes',Fore.RED + '------------------------ \
+# Unofficial; Just for fun')
     time.sleep(0.2)
     print(Fore.BLUE + '\nPress l to return to main menu')
 
@@ -228,7 +227,7 @@ elif option == 1:
         call(['python', 'pWords.py'])
         sys.exit()
     elif option == 3:
-        call(['python', 'pLevels.py'])
+        call(['python', 'classicMode+.py'])
         sys.exit()
     else:
         ''
@@ -248,22 +247,30 @@ while again == 'w':
     else:
         sMax = 3
 
-    print(Fore.GREEN + '\nChoose a difficulty: ')
+    print(Fore.GREEN + '\nChoose a difficulty or press \'p\' to practice: ')
     while True:
         flush_input()
         if keyboard.is_pressed('1'):
             difficulty = 1
+            inputM = open('inputM.txt').read()
             break
         elif keyboard.is_pressed('2'):
             difficulty = 2
+            inputM = open('inputM.txt').read()
             break
         elif keyboard.is_pressed('3'):
             difficulty = 3
+            inputM = open('inputM.txt').read()
             break
 
         elif sMax == 4 and keyboard.is_pressed('4'):
             difficulty = 4
             break
+        
+        elif keyboard.is_pressed('p'):
+            difficulty = 3
+            inputM = '3'
+            break 
 
 
     easyL = '''Doll Chair Toy Mask Red Brother Honey Lunch Mother Table
@@ -425,8 +432,13 @@ column evaluation lovely concentration evidence marriage material potential sinc
                 print(Fore.MAGENTA + '')
                 print(''.join(answer))
                 print('Spell the word:')
-                keyboard.wait(letter)
-                answer.append(letter)
+                while True:
+                    if keyboard.is_pressed(letter):
+                        answer.append(letter)
+                        break
+                    elif keyboard.is_pressed('enter'):
+                        letter = len(question)
+                        break
                 clear()
             end = time.time()
             timeTaken = end - start
@@ -455,23 +467,37 @@ column evaluation lovely concentration evidence marriage material potential sinc
             print(Fore.GREEN + 'Correct answer:',''.join(question))
             
         flush_input()
-        print(Fore.BLUE + '''\n\nPress space to play again,
+        if inputM == '1' or inputM == '2':
+            print(Fore.BLUE + '''\n\nPress space to play again,
 or press '1' to change difficulty,
 or press '2' to receive stats and end: ''')
 
-        
-        while True:
-            flush_input()
-            if keyboard.is_pressed(' '):
-                again = ''
-                break
-            elif keyboard.is_pressed('1'):
-                again = 'w'
-                break
-            elif keyboard.is_pressed('2'):
-                again = 'end'
-                break
-        clear()
+            
+            while True:
+                flush_input()
+                if keyboard.is_pressed(' '):
+                    again = ''
+                    break
+                elif keyboard.is_pressed('1'):
+                    again = 'w'
+                    break
+                elif keyboard.is_pressed('2'):
+                    again = 'end'
+                    break
+            clear()
+    
+        else:
+            print(Fore.BLUE + '''\n\nPress space to play again,
+or press '1' to leave practice mode: ''')
+
+            while True:
+                if keyboard.is_pressed(' '):
+                    again = ''
+                    break
+                elif keyboard.is_pressed('1'):
+                    clear()
+                    call(['python', 'classicMode.py'])
+                    sys.exit()
         
         if again == 'end':
             break
@@ -533,7 +559,7 @@ pStats.close()
 flush_input()
 time.sleep(0.2)
 print(Fore.GREEN + 'Press enter to continue:')
-keyboard.wait()
+keyboard.wait('enter')
 
 clear()
 time.sleep(0.2)

@@ -38,8 +38,6 @@ def showSetting():
         inputM = 'Natural'
     elif inputM == '2':
         inputM = 'Memorise'
-    else:
-        inputM = 'Practice'
 
     anyWordV = open('anyWordV.txt', 'r')
     anyWordV = anyWordV.read()
@@ -107,10 +105,9 @@ while True:
 
 2) Memorise: input the word letter at a time to make you think more and so learn more
 
-3) Practice: You can only enter the correct letters with no time limit but you can't record your stats
 
-(Note: For option 2 when multiple words need to be entered the space will be auto-completed.
-Option 3 is only for classic mode.''')
+(Note: For option 2 when multiple words need to be entered the space will be auto-completed.)
+''')
 
         time.sleep(0.5)
         print(Fore.MAGENTA + '\nChoose input method: ')
@@ -121,10 +118,6 @@ Option 3 is only for classic mode.''')
                 break
             elif keyboard.is_pressed('2'):
                 choice = 2
-                break
-            elif keyboard.is_pressed('3'):
-                inputM.write('3')
-                choice = 0
                 break
 
         if choice == 1:

@@ -30,14 +30,6 @@ questionV = '\n'
 inputM = open('inputM.txt', 'r')
 inputM = inputM.read()
 
-if inputM == '3':
-    clear()
-    print(Fore.RED + 'You have the Practice input method selected')
-    print('Please change to one of the other input methods to play this gamemode')
-    time.sleep(6)
-    call(['python', 'classicMode.py'])
-    exit()
-
 difficultyO = open('difficultyO.txt', 'r')
 difficultyO = difficultyO.read()
 if difficultyO == '1':

@@ -27,14 +27,8 @@ else:
 
 inputM = open('inputM.txt', 'r')
 inputM = inputM.read()
-if inputM == '3':
-    clear()
-    print(Fore.RED + 'You have the Practice input method selected')
-    print('Please change to one of the other input methods to play this gamemode')
-    time.sleep(6)
-    call(['python', 'classicMode.py'])
-    exit()
-elif inputM == '2':
+
+if inputM == '2':
     inputM = 'Memorise'
 elif inputM == '1':
     inputM = 'Natural'
